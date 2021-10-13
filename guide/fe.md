@@ -3,7 +3,7 @@
  * @Author: zmlxsg
  * @Date: 2021-08-23 10:39:34
  * @LastEditors: zml
- * @LastEditTime: 2021-09-07 14:04:05
+ * @LastEditTime: 2021-10-13 18:51:49
 -->
 
 # 前端规范
@@ -19,20 +19,20 @@
 * 根据页面内容和需求填写适当的 keywords 和 description。
 * 页面 title 是极为重要的不可缺少的一项。
 
-      <!doctype html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <title>NEC：更好的 CSS 方案</title>
-          <meta name="keywords" content>
-          <meta name="description" content>
-          <meta name="viewport" content="width=device-width">
-          <link rel="stylesheet" href="css/style.css">
-          <link rel="shortcut icon" href="img/favicon.ico">
-          <link rel="apple-touch-icon" href="img/touchicon.png">
-        </head>
-      <body></body>
-      </html>
+  ```<!doctype html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>NEC：更好的 CSS 方案</title>
+      <meta name="keywords" content>
+      <meta name="description" content>
+      <meta name="viewport" content="width=device-width">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="shortcut icon" href="img/favicon.ico">
+      <link rel="apple-touch-icon" href="img/touchicon.png">
+    </head>
+  <body></body>
+  </html>
 
 #### 结构顺序和视觉顺序基本保持一致
 
@@ -54,19 +54,19 @@
 * 对于内容较为简单的表格，建议将 tr 写成单行。
 * 你也可以在大的模块之间用空行隔开，使模块更清晰。
 
-      <body>
-        <div class="m-side">
-          <div class="side">
-              <div class="sidein">
-                <div class="sideblk">
-                    <div class="m-hd3">
-                        <h3 class="tit">热门标签</h3>
-                    </div>
+  ```<body>
+    <div class="m-side">
+      <div class="side">
+          <div class="sidein">
+            <div class="sideblk">
+                <div class="m-hd3">
+                    <h3 class="tit">热门标签</h3>
                 </div>
-              </div>
+            </div>
           </div>
-        </div>
-      </body>
+      </div>
+    </div>
+  </body>
 
 #### 另外，请做到以下几点
 
@@ -85,7 +85,7 @@
 * 结束注释：`<!-- /注释文案 -->`（文案前加“/”符号，类似标签的闭合）。
 * 允许只有开始注释！
 
-      <!-- 头部 --> 
+     ``` <!-- 头部 --> 
       <div class="g-hd">
         <!-- LOGO -->
           <h1 class="m-logo">
@@ -110,13 +110,14 @@
 
 单行代码的注释也保持同行，两端空格；多行代码的注释起始和结尾都另起一行并左缩进对齐。
 
-    <!-- <h1 class="m-logo"><a href="#">LOGO</a></h1> -->
+ `<!-- <h1 class="m-logo"><a href="#">LOGO</a></h1> -->`
     <!--
     <ul class="m-nav">
       <li><a href="#">NAV1</a></li>
       <li><a href="#">NAV2</a></li>
     </ul>
     -->
+
 
 #### HTML 注释在 IE6 中的 BUG
 

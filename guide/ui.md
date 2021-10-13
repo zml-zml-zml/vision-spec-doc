@@ -2,8 +2,8 @@
  * @Descripttion: UI规范
  * @Author: zmlxsg
  * @Date: 2021-08-24 10:20:59
- * @LastEditors: zmlxsg
- * @LastEditTime: 2021-08-30 10:01:45
+ * @LastEditors: zml
+ * @LastEditTime: 2021-10-13 18:42:54
 -->
 
 # UI规范
@@ -135,7 +135,7 @@
 
 ### 进度条
 
-![进度条]](../img/ui-29.png)
+![进度条](../img/ui-29.png)
 
 ### 缺省页
 
