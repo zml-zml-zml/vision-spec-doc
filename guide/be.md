@@ -2,8 +2,8 @@
  * @Descripttion: 后端规范
  * @Author: zmlxsg
  * @Date: 2021-08-23 10:39:34
- * @LastEditors: zmlxsg
- * @LastEditTime: 2021-08-30 10:00:51
+ * @LastEditors: zml
+ * @LastEditTime: 2021-10-14 11:43:53
 -->
 
 # 后端规范
@@ -14,7 +14,8 @@
 
 1. 【强制】代码中的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束。
 
-    反 例 ：_name / name / $name / name_ / name$ / name
+    反 例 ：
+    _name / name / $name / name_ / name$ / name
 
 2. 【强制】所有编程相关的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文的方式。说明：正确的英文拼写和语法可以让阅读者易于理解，避免歧义。注意，纯拼音命名方式更要避免采用。 正例：ali /
 alibaba / taobao / cainiao/ aliyun/ youku / hangzhou 等国际通用的名称，可视同英文。
@@ -67,27 +68,30 @@ alibaba / taobao / cainiao/ aliyun/ youku / hangzhou 等国际通用的名称，
 
     反例：
 
-        public class
-        ConfusingName
-          {
-            public int stock;
-          // 非 setter/getter 的参数名称，不允许与本类成员变量同名
-            public void get(String alibaba) {
-              if (condition) {
-                final int money = 666;
-              // ...
-              }
-              for (int i = 0; i < 10; i++) {
-              // 在同一方法体中，不允许与其它代码块中的 money 命名相同
-              final int money = 15978;
+```
+    public class
+    ConfusingName
+      {
+        public int stock;
+      // 非 setter/getter 的参数名称，不允许与本类成员变量同名
+        public void get(String alibaba) {
+          if (condition) {
+            final int money = 666;
           // ...
-              }
-            }
+          }
+          for (int i = 0; i < 10; i++) {
+          // 在同一方法体中，不允许与其它代码块中的 money 命名相同
+          final int money = 15978;
+      // ...
+          }
         }
-        class Son extends ConfusingName {
-        // 不允许与父类的成员变量名称相同
-            public int stock;
-        } 
+    }
+    class Son extends ConfusingName {
+    // 不允许与父类的成员变量名称相同
+        public int stock;
+    }
+```
+
 12. 【强制】杜绝完全不规范的缩写，避免望文不知义。
 
     反例：AbstractClass“缩写”成 AbsClass；condition“缩写”成 condi；Function 缩写”成 Fu，此类
@@ -96,8 +100,8 @@ alibaba / taobao / cainiao/ aliyun/ youku / hangzhou 等国际通用的名称，
 13. 【推荐】为了达到代码自解释的目标，任何自定义编程元素在命名时，使用尽量完整的单词组合来表达。
 
     正例：对某个对象引用的 volatile 字段进行原子更新的类名为 AtomicReferenceFieldUpdater。
-
     反例：常见的方法内变量为 int a;的定义方式。
+
 14. 【推荐】在常量与变量的命名时，表示类型的名词放在词尾，以提升辨识度。
 
     正例：startTime / workQueue / nameList / TERMINATED_THREAD_COUNT
@@ -107,8 +111,8 @@ alibaba / taobao / cainiao/ aliyun/ youku / hangzhou 等国际通用的名称，
 
     说明：将设计模式体现在名字中，有利于阅读者快速理解架构设计理念。
     正例： public class OrderFactory;
-    public class LoginProxy;
-    public class ResourceObserver;
+          public class LoginProxy;
+          public class ResourceObserver;
 
 16. 【推荐】接口类中的方法和属性不要加任何修饰符号（public 也不要加），保持代码的简洁性，并加上有效的 Javadoc 注释。尽量不要在接口里定义变量，如果一定要定义变量，确定与接口方法相关，并且是整个应用的基础常量。
 
@@ -201,19 +205,23 @@ alibaba / taobao / cainiao/ aliyun/ youku / hangzhou 等国际通用的名称，
     5） 类内共享常量：直接在类内部 private static final 定义。
 
 5. 【推荐】如果变量值仅在一个固定范围内变化用 enum 类型来定义。
-说明：如果存在名称之外的延伸属性应使用 enum 类型，下面正例中的数字就是延伸信息，表示一年中的第几个季节。
-    正例:
 
-        public enum SeasonEnum {
-            SPRING(1), SUMMER(2), AUTUMN(3), WINTER(4);
-            private int seq;
-            SeasonEnum(intseq) {
-                this.seq = seq;
-            }
-            public intgetSeq() {
-                return seq;
-            }
+说明：如果存在名称之外的延伸属性应使用 enum 类型，下面正例中的数字就是延伸信息，表示一年中的第几个季节。
+
+```
+  正例:
+
+      public enum SeasonEnum {
+          SPRING(1), SUMMER(2), AUTUMN(3), WINTER(4);
+          private int seq;
+          SeasonEnum(intseq) {
+              this.seq = seq;
           }
+          public intgetSeq() {
+              return seq;
+          }
+        }
+```
 
 ### 代码格式
 
@@ -241,6 +249,7 @@ alibaba / taobao / cainiao/ aliyun/ youku / hangzhou 等国际通用的名称，
 
     说明：如果使用 Tab 缩进，必须设置 1 个 Tab 为 4 个空格。IDEA 设置 Tab 为 4 个空格时，请勿勾选 Use tab character；Eclipse 中，必须勾选 insert spaces for tabs。
 
+```
       正例： （涉及 1-5 点）
         public static void main(String[] args) {
             // 缩进 4 个空格
@@ -260,6 +269,7 @@ alibaba / taobao / cainiao/ aliyun/ youku / hangzhou 等国际通用的名称，
             // 在右大括号后直接结束，则必须换行
             }
           }
+```
 
 6. 【强制】注释的双斜线与注释内容之间有且仅有一个空格。
 
@@ -285,6 +295,7 @@ alibaba / taobao / cainiao/ aliyun/ youku / hangzhou 等国际通用的名称，
 
     5） 在括号前不要换行，见反例。
 
+```
     正例：
 
         StringBuilder sb = new StringBuilder();
@@ -303,10 +314,13 @@ alibaba / taobao / cainiao/ aliyun/ youku / hangzhou 等国际通用的名称，
         // 参数很多的方法调用可能超过 120 个字符，逗号后才是换行处
         method(args1, args2, args3, ...
         , argsX);
+```
 
 9. 【强制】方法参数在定义和传入时，多个参数逗号后面必须加空格。
+
 正例：下例中实参的 args1，后边必须要有一个空格。
-method(args1, args2, args3);
+
+`method(args1, args2, args3);`
 
 10. 【强制】IDE 的 text file encoding 设置为 UTF-8; IDE 中文件的换行符使用 Unix 格式，不要使用Windows 格式。
 
@@ -318,13 +332,14 @@ method(args1, args2, args3);
 
 12. 【推荐】没有必要增加若干空格来使变量的赋值等号与上一行对应位置的等号对齐。
 
+```
     正例：
-
         int one = 1; 
         long two = 
         2L; float 
         three = 3F;
         StringBuilder sb = new StringBuilder();
+```
 
    说明：增加 sb 这个变量，如果需要对齐，则给one、two、three 都要增加几个空格，在变量比较多的情况下，是非常累赘的事情。
 
@@ -350,12 +365,16 @@ method(args1, args2, args3);
 
 5. 【强制】不能使用过时的类或方法。
 
-    说明：java.net.URLDecoder 中的方法 decode(String encodeStr) 这个方法已经过时，应该使用双参数decode(String source,String encode)。接口提供方既然明确是过时接口，那么有义务同时提供新的接口； 作为调用方来说，有义务去考证过时方法的新实现是什么。
+    说明：java.net.URLDecoder 中的方法 decode(String encodeStr) 这个方法已经过时，应该使用双参数decode(String source,String encode)。接口提供方既然明确是过时接口，那么有义务同时提供新的
+
+    接口； 作为调用方来说，有义务去考证过时方法的新实现是什么。
 
 6. 【强制】Object 的 equals 方法容易抛空指针异常，应使用常量或确定有值的对象来调用 equals。
 
     正例："test".equals(object);
+
     反例：object.equals("test");
+
     说明：推荐使用 JDK7 引入的工具类 java.util.Objects#equals(Object a, Object b)
 
 7. 【强制】所有整型包装类对象之间值的比较，全部使用 equals 方法比较。
@@ -370,8 +389,9 @@ method(args1, args2, args3);
 
     浮点数采用“尾数+阶码”的编码方式，类似于科学计数法的“有效数字+指数”的表示方式。二进制无法精确表示大部分的十进制小数，具体原理参考《码出高效》。
 
-    反例：
+反例：
 
+```
       float a = 1.0F -
       0.9F; float b =0.9F - 0.8F;
       if (a == b) {
@@ -384,11 +404,13 @@ method(args1, args2, args3);
         // 预期进入此代码块，执行其它业务逻辑
         // 但事实上 equals 的结果为 false
       }
+```
 
-    正例：
+正例：
 
-    (1) 指定一个误差范围，两个浮点数的差值在此范围之内，则认为是相等的。
+(1) 指定一个误差范围，两个浮点数的差值在此范围之内，则认为是相等的。
 
+```
         float a = 1.0F -0.9F;
         float b = 0.9F - 0.8F;
 
@@ -397,19 +419,22 @@ method(args1, args2, args3);
         if (Math.abs(a - b) < diff) {
           System.out.println("true");
         }
+```
 
-    (2) 使用 BigDecimal 来定义值，再进行浮点数的运算操作。
+(2) 使用 BigDecimal 来定义值，再进行浮点数的运算操作。
 
-        BigDecimal a = new
-        BigDecimal("1.0");
-        BigDecimal b = new BigDecimal("0.9");
-        BigDecimal c = new
-        BigDecimal("0.8");
-        BigDecimal x = a.subtract(b);
-        BigDecimal y = b.subtract(c);
-        if (x.compareTo(y) == 0) {
-          System.out.println("true");
-        }
+```
+    BigDecimal a = new
+    BigDecimal("1.0");
+    BigDecimal b = new BigDecimal("0.9");
+    BigDecimal c = new
+    BigDecimal("0.8");
+    BigDecimal x = a.subtract(b);
+    BigDecimal y = b.subtract(c);
+    if (x.compareTo(y) == 0) {
+      System.out.println("true");
+    }
+```
 
 10. 【强制】如上所示 BigDecimal 的等值比较应使用 compareTo()方法，而不是 equals()方法。
 
@@ -418,6 +443,7 @@ method(args1, args2, args3);
 11. 【强制】定义数据对象 DO 类时，属性类型要与数据库字段类型相匹配。
 
     正例：数据库字段的 bigint 必须与类属性的 Long 类型相对应。
+
     反例：某个案例的数据库表 id 字段定义类型bigint unsigned，实际类对象属性为 Integer，随着 id 越来越大，超过 Integer 的表示范围而溢出成为负数。
 
 12. 【强制】禁止使用构造方法 BigDecimal(double)的方式把 double 值转化为 BigDecimal 对象。
@@ -428,9 +454,11 @@ method(args1, args2, args3);
 
     正例：优先推荐入参为 String 的构造方法，或使用 BigDecimal 的 valueOf 方法，此方法内部其实执行了Double 的 toString，而 Double 的toString 按 double 的实际能表达的精度对尾数进行了截断。
 
+ ```
         BigDecimal recommend1 = new
         BigDecimal("0.1");
         BigDecimal recommend2 = BigDecimal.valueOf(0.1);
+ ```
 
 13. 关于基本数据类型与包装数据类型的使用标准如下：
 
@@ -446,41 +474,44 @@ method(args1, args2, args3);
 
   反例：某业务的交易报表上显示成交总额涨跌情况，即正负 x%，x 为基本数据类型，调用的 RPC 服务，调用不成功时，返回的是默认值，页面显示为 0%，这是不合理的，应该显示成中划线-。所以包装数据类型的 null 值，能够表示额外的信息，如：远程调用失败，异常退出。
 
-14.【强制】定义 DO/DTO/VO 等 POJO 类时，不要设定任何属性默认值。
-反例：POJO 类的 createTime 默认值为 new Date()，但是这个属性在数据提取时并没有置入具体值，在更新其它字段时又附带更新了此字段，导致创建时间被修改成当前时间。
+14. 【强制】定义 DO/DTO/VO 等 POJO 类时，不要设定任何属性默认值。
 
-15.【强制】序列化类新增属性时，请不要修改 serialVersionUID 字段，避免反序列失败；如果完全不兼容升级，避免反序列化混乱，那么请修改 serialVersionUID 值。
+  反例：POJO 类的 createTime 默认值为 new Date()，但是这个属性在数据提取时并没有置入具体值，在更新其它字段时又附带更新了此字段，导致创建时间被修改成当前时间。
+
+15. 【强制】序列化类新增属性时，请不要修改 serialVersionUID 字段，避免反序列失败；如果完全不兼容升级，避免反序列化混乱，那么请修改 serialVersionUID 值。
 
   说明：注意 serialVersionUID 不一致会抛出序列化运行时异常。
 
-16.【强制】构造方法里面禁止加入任何业务逻辑，如果有初始化逻辑，请放在 init 方法中。
+16. 【强制】构造方法里面禁止加入任何业务逻辑，如果有初始化逻辑，请放在 init 方法中。
 
-17.【强制】POJO 类必须写 toString 方法。使用 IDE 中的工具：source> generate toString时，如果继承了另一个 POJO 类，注意在前面加一下 super.toString。
+17. 【强制】POJO 类必须写 toString 方法。使用 IDE 中的工具：source> generate toString时，如果继承了另一个 POJO 类，注意在前面加一下 super.toString。
 
   说明：在方法执行抛出异常时，可以直接调用 POJO 的 toString()方法打印其属性值，便于排查问题。
 
-18.【强制】禁止在 POJO 类中，同时存在对应属性 xxx 的 isXxx()和 getXxx()方法。
+18. 【强制】禁止在 POJO 类中，同时存在对应属性 xxx 的 isXxx()和 getXxx()方法。
 
   说明：框架在调用属性 xxx 的提取方法时，并不能确定哪个方法一定是被优先调用到的。
 
-19.【推荐】使用索引访问用 String 的 split 方法得到的数组时，需做最后一个分隔符后有无内容的检查，否则会IndexOutOfBoundsException 的风险。
+19. 【推荐】使用索引访问用 String 的 split 方法得到的数组时，需做最后一个分隔符后有无内容的检查，否则会IndexOutOfBoundsException 的风险。
 
   说明：
 
+```
     String str = "a,b,c,,";
     String[] ary = str.split(",");
-    // 预 期 大 于 3， 结 果 是
-    3 
+    // 预 期 大 于 3， 结 果 是3 
     System.out.println(ary.length);
+```    
 
-20.【推荐】当一个类有多个构造方法，或者多个同名方法，这些方法应该按顺序放置在一起，便于阅读，此条规则优先于下一条。
+20. 【推荐】当一个类有多个构造方法，或者多个同名方法，这些方法应该按顺序放置在一起，便于阅读，此条规则优先于下一条。
 
-21.【推荐】 类内方法定义的顺序依次是：公有方法或保护方法 > 私有方法 > getter / setter方法。
+21. 【推荐】 类内方法定义的顺序依次是：公有方法或保护方法 > 私有方法 > getter / setter方法。
 
   说明：公有方法是类的调用者和维护者最关心的方法，首屏展示最好；保护方法虽然只是子类关心，也可能是“模板设计模式”下的核心方法；而私有方法外部一般不需要特别关心，是一个黑盒实现；因为承载的信息价值较低，所有 Service 和 DAO 的 getter/setter 方法放在类体最后。
 
-22.【推荐】setter 方法中，参数名称与类成员变量名称一致，this.成员名 = 参数名。在getter/setter 方法中，不要增加业务逻辑，增加排查问题的难度。
+22. 【推荐】setter 方法中，参数名称与类成员变量名称一致，this.成员名 = 参数名。在getter/setter 方法中，不要增加业务逻辑，增加排查问题的难度。
 
+```
   反例：
 
     public Integer 
@@ -491,19 +522,21 @@ method(args1, args2, args3);
             return this.data - 100;
         } 
     }
+```
 
-23.【推荐】循环体内，字符串的连接方式，使用 StringBuilder 的 append 方法进行扩展。
+23. 【推荐】循环体内，字符串的连接方式，使用 StringBuilder 的 append 方法进行扩展。
 
   说明：下例中，反编译出的字节码文件显示每次循环都会 new 出一个StringBuilder 对象，然后进行append操作，最后通过 toString 方法返回 String 对象，造成内存资源浪费。
 
+```
   反例：
-
     String str = "start";
     for (int i = 0; i < 100; i++) {
        str = str + "hello";
     }
+```
 
-24.【推荐】final 可以声明类、成员变量、方法、以及本地变量，下列情况使用 final 关键字：
+24. 【推荐】final 可以声明类、成员变量、方法、以及本地变量，下列情况使用 final 关键字：
 
   1） 不允许被继承的类，如：String 类。
 
@@ -515,11 +548,11 @@ method(args1, args2, args3);
 
   5） 避免上下文重复使用一个变量，使用 final 关键字可以强制重新定义一个变量，方便更好地进行重构。
 
-25.【推荐】慎用 Object 的 clone 方法来拷贝对象。
+25. 【推荐】慎用 Object 的 clone 方法来拷贝对象。
 
   说明：对象 clone 方法默认是浅拷贝，若想实现深拷贝，需覆写 clone 方法实现域对象的深度遍历式拷贝。
 
-26.【推荐】类成员与方法访问控制从严：
+26. 【推荐】类成员与方法访问控制从严：
 
   1） 如果不允许外部直接通过 new 来创建对象，那么构造方法必须是 private。
 
@@ -560,10 +593,10 @@ method(args1, args2, args3);
 
     4） 12 小时制的则是小写的 h。
 
-3. 【强制】获取当前毫秒数：System.currentTimeMillis(); 而不是 new Date().getTime()。说明：如果想获取更加精确的纳秒级时间值，使用 System.nanoTime 的方式。在 JDK8 中，针对统计时间等场景，推荐
-使用 Instant 类。
+3. 【强制】获取当前毫秒数：System.currentTimeMillis(); 而不是 new Date().getTime()。说明：如果想获取更加精确的纳秒级时间值，使用 System.nanoTime 的方式。在 JDK8 中，针对统计时间等场景，推荐使用 Instant 类。
 
 4. 【强制】不允许在程序任何地方中使用：
+
     1）java.sql.Date。
 
     2）java.sql.Time。
@@ -576,6 +609,7 @@ method(args1, args2, args3);
 
 5. 【强制】不要在程序中写死一年为 365 天，避免在公历闰年时出现日期转换错误或程序逻辑错误。
 
+```
     正例：
 
         // 获取今年的天数
@@ -591,9 +625,9 @@ method(args1, args2, args3);
           Calendar calendar = Calendar.getInstance(); 
           calendar.set(2020, 1, 26);
           calendar.add(Calendar.DATE, 365);
+ ```
 
-6. 【推荐】避免公历闰年 2 月问题。闰年的 2 月份有 29 天，一年后的那一天不可能是 2 月 29
-日。
+6. 【推荐】避免公历闰年 2 月问题。闰年的 2 月份有 29 天，一年后的那一天不可能是 2 月 29日。
 
 7. 【推荐】使用枚举值来指代月份。如果使用数字，注意 Date，Calendar 等日期相关类的月份month 取值在 0-11 之间。
 
@@ -604,10 +638,10 @@ method(args1, args2, args3);
 ### 集合处理
 
 1. 【强制】关于 hashCode 和 equals 的处理，遵循如下规则：
+
     1） 只要覆写 equals，就必须覆写 hashCode。
 
-    2） 因为 Set 存储的是不重复的对象，依据 hashCode 和 equals 进行判断，所以 Set 存储的对象必须覆写
-    这两种方法。
+    2） 因为 Set 存储的是不重复的对象，依据 hashCode 和 equals 进行判断，所以 Set 存储的对象必须覆写这两种方法。
 
     3） 如果自定义对象作为 Map 的键，那么必须覆写hashCode 和 equals。
 
@@ -617,19 +651,20 @@ method(args1, args2, args3);
 
     说明：在某些集合中，前者的时间复杂度为 O(1)，而且可读性更好。
 
+```
     正例：
-
         Map<String, Object> map = new HashMap<>(16);
         if(map.isEmpty()) {
             System.out.println("no element in this map.");
         }
+```
 
 3. 【强制】在使用 java.util.stream.Collectors 类的 toMap()方法转为 Map 集合时，一定要使用含有参数类型 为 BinaryOperator ， 参 数 名 为 mergeFunction 的 方 法 ， 否 则 当 出 现 相 同 key 值 时 会 抛 出IllegalStateException 异常。
 
     说明：参数 mergeFunction 的作用是当出现 key 重复时，自定义对 value 的处理策略。
 
+```
     正例：
-
         List<Pair<String, Double>> pairArrayList = new ArrayList<(3);
         pairArrayList.add(new Pair<>("version", 12.10));
         pairArrayList.add(new Pair<>("version", 12.19));
@@ -646,13 +681,18 @@ method(args1, args2, args3);
         Map<Integer, String> map = Arrays.stream(departments)
         .collect(Collectors.toMap(String::hashCode, str -> str));
 
+```
+
 4. 【强制】在使用 java.util.stream.Collectors 类的 toMap()方法转为 Map 集合时，一定要注意当 value 为null 时会抛 NPE 异常。
 
     说明：在 java.util.HashMap 的 merge 方法里会进行如下的判断：
 
+```
         if (value == null || remappingFunction == null) throw new 
         NullPointerException();
+```
 
+```
     反例：
 
         List<Pair<String, Double>> pairArrayList = new ArrayList<>(2); 
@@ -661,6 +701,7 @@ method(args1, args2, args3);
         Map<String, Double> map = pairArrayList.stream().collect(
         // 抛出 NullPointerException 异常
         Collectors.toMap(Pair::getKey, Pair::getValue, (v1, v2) -> v2));
+```
 
 5. 【强制】ArrayList 的 subList 结果不可强转成 ArrayList，否则会抛出 ClassCastException 异常：
     `java.util.RandomAccessSubList cannot be cast to java.util.ArrayList。`
@@ -679,22 +720,23 @@ method(args1, args2, args3);
 
     反例：直接使用 toArray 无参方法存在问题，此方法返回值只能是 Object[]类，若强转其它类型数组将出现ClassCastException 错误。
 
+```
     正例：
-
         List<String> list = new 
         ArrayList<>(2); list.add("guan");
         list.add("bao");
         String[] array = list.toArray(new String[0]);
+```
 
-    说明：使用 toArray 带参方法，数组空间大小的 length：
+说明：使用 toArray 带参方法，数组空间大小的 length：
 
-    1） 等于 0，动态创建与 size 相同的数组，性能最好。
+1） 等于 0，动态创建与 size 相同的数组，性能最好。
 
-    2） 大于 0 但小于size，重新创建大小等于 size 的数组，增加 GC 负担。
+2） 大于 0 但小于size，重新创建大小等于 size 的数组，增加 GC 负担。
 
-    3） 等于 size，在高并发情况下，数组创建完成之后，size 正在变大的情况下，负面影响与 2 相同。
+3） 等于 size，在高并发情况下，数组创建完成之后，size 正在变大的情况下，负面影响与 2 相同。
 
-    4） 大于 size，空间浪费，且在 size 处插入 null 值，存在 NPE 隐患。
+4） 大于 size，空间浪费，且在 size 处插入 null 值，存在 NPE 隐患。
 
 10. 【强制】在使用 Collection 接口任何实现类的 addAll()方法时，都要对输入的集合参数进行NPE 判断。
 
@@ -704,24 +746,25 @@ method(args1, args2, args3);
 
     说明：asList 的返回对象是一个 Arrays 内部类，并没有实现集合的修改方法。Arrays.asList 体现的是适配器模式，只是转换接口，后台的数据仍是数组。
 
+```
         String[] str = new String[] { "chen", "yang", "hao" }; 
         List list = Arrays.asList(str);
+```
 
-    第一种情况：list.add("yangguanbao"); 运行时异常。
+第一种情况：list.add("yangguanbao"); 运行时异常。
 
-    第二种情况：str[0] = "change"; 也会随之修改，反之亦然。
+第二种情况：str[0] = "change"; 也会随之修改，反之亦然。
 
 12. 【强制】泛型通配符<? extends T>来接收返回的数据，此写法的泛型集合不能使用 add 方法， 而<? superT>不能使用 get 方法，两者在接口调用赋值的场景中容易出错。
 
     说明：扩展说一下 PECS(Producer Extends Consumer Super)原则：第一、频繁往外读取内容的，适合用<? extends T>。第二、经常往里插入的，适合用<? super T>
 
-13. 【强制】在无泛型限制定义的集合赋值给泛型限制的集合时，在使用集合元素时，需要进行
-instanceof 判断，避免抛出 ClassCastException 异常。
+13. 【强制】在无泛型限制定义的集合赋值给泛型限制的集合时，在使用集合元素时，需要进行instanceof 判断，避免抛出 ClassCastException 异常。
 
     说明：毕竟泛型是在 JDK5 后才出现，考虑到向前兼容，编译器是允许非泛型集合与泛型集合互相赋值。
 
+```
     反例：
-
         List<String> generics = null;
         List notGenerics = new ArrayList(10); 
         notGenerics.add(new Object()); 
@@ -729,11 +772,12 @@ instanceof 判断，避免抛出 ClassCastException 异常。
         generics = notGenerics;
         // 此处抛出 ClassCastException 异常
         String string = generics.get(0);
+```
 
-14. 【强制】不要在 foreach 循环里进行元素的 remove/add 操作。remove 元素请使用 Iterator
-方式，如果并发操作，需要对 Iterator 对象加锁。
+14. 【强制】不要在 foreach 循环里进行元素的 remove/add 操作。remove 元素请使用 Iterator方式，如果并发操作，需要对 Iterator 对象加锁。
+
+```
     正例：
-
         List<String> list = new ArrayList<>();
         list.add("1");
         list.add("2");
@@ -752,34 +796,41 @@ instanceof 判断，避免抛出 ClassCastException 异常。
             list.remove(item);
           } 
         }
+```
 
-    说明：以上代码的执行结果肯定会出乎大家的意料，那么试一下把“1”换成“2”，会是同样的结果吗？
+说明：以上代码的执行结果肯定会出乎大家的意料，那么试一下把“1”换成“2”，会是同样的结果吗？
 
-15. 【强制】在 JDK7 版本及以上，Comparator 实现类要满足如下三个条件，不然 Arrays.sort，
-Collections.sort 会抛 IllegalArgumentException 异常。
+15. 【强制】在 JDK7 版本及以上，Comparator 实现类要满足如下三个条件，不然 Arrays.sort，Collections.sort 会抛 IllegalArgumentException 异常。
+
 说明：三个条件如下
 
-    1） x，y 的比较结果和 y，x 的比较结果相反。
+1） x，y 的比较结果和 y，x 的比较结果相反。
 
-    2） x>y，y>z，则 x>z。 3） x=y，则 x，z 比较结果和 y，z 比较结果相同。
+2） x>y，y>z，则 x>z。 
+
+3） x=y，则 x，z 比较结果和 y，z 比较结果相同。
 
     反例：下例中没有处理相等的情况，交换两个对象判断结果并不互反，不符合第一个条件，在实际使用中可能会出现异常。
 
+```
         new Comparator<Student>() { 
           @Override public int compare(Student o1, Student o2) {
             return o1.getId() > o2.getId() ? 1 : -1;
           }
         };
+```
 
 16. 【推荐】集合泛型定义时，在 JDK7 及以上，使用 diamond 语法或全省略。
+
 说明：菱形泛型，即 diamond，直接使用<>来指代前边已经指定的类型。
 
+```
     正例：
-
         // diamond 方式，即<>
         HashMap<String, String> userCache = new HashMap<>(16);
         // 全省略方式
         ArrayList<User> users = new ArrayList(10);
+```
 
 17. 【推荐】集合初始化时，指定集合初始值大小。
 
@@ -825,6 +876,7 @@ contains()进行遍历去重或者判断包含操作。
 
     正例：自定义线程工厂，并且根据外部特征进行分组，比如，来自同一机房的调用，把机房编号赋值给
 
+```
         whatFeatureOfGroup
             public class UserThreadFactory implements
                 ThreadFactory {
@@ -844,14 +896,15 @@ contains()进行遍历去重或者判断包含操作。
                 return thread;
             } 
         }
+```
 
-3.【强制】线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。
+3. 【强制】线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。
 
   说明：线程池的好处是减少在创建和销毁线程上所消耗的时间以及系统资源的开销，解决资源不足的问题。
 
   如果不使用线程池，有可能造成系统创建大量同类线程而导致消耗完内存或者“过度切换”的问题。
 
-4.【强制】线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor 的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。
+4. 【强制】线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor 的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。
 说明：Executors 返回的线程池对象的弊端如下：
 
   1） FixedThreadPool 和 SingleThreadPool：
@@ -860,38 +913,41 @@ contains()进行遍历去重或者判断包含操作。
 
   允许的创建线程数量为 Integer.MAX_VALUE，可能会创建大量的线程，从而导致 OOM。
 
-5.【强制】SimpleDateFormat 是线程不安全的类，一般不要定义为 static 变量，如果定义为static， 必须加锁，或者使用 DateUtils 工具类。
+5. 【强制】SimpleDateFormat 是线程不安全的类，一般不要定义为 static 变量，如果定义为static， 必须加锁，或者使用 DateUtils 工具类。
 
   正例：注意线程安全，使用 DateUtils。亦推荐如下处理：
 
+```
     private static final ThreadLocal<DateFormat> df = new ThreadLocal<DateFormat>() { 
       @Override protected DateFormat initialValue() {
           return new SimpleDateFormat("yyyy-MM-dd");
       }
     };
+```
 
   说 明 ： 如 果 是 JDK8 的 应 用 ， 可 以 使 用 Instant 代 替 Date，LocalDateTime 代 替 Calendar，DateTimeFormatter 代替 SimpleDateFormat，官方给出的解释：simple beautiful strong immutable thread-safe。
 
-6.【强制】必须回收自定义的 ThreadLocal 变量，尤其在线程池场景下，线程经常会被复用， 如果不清理自定义的 ThreadLocal 变量，可能会影响后续业务逻辑和造成内存泄露等问题。尽量在代理中使用 try-finally块进行回收。
+6. 【强制】必须回收自定义的 ThreadLocal 变量，尤其在线程池场景下，线程经常会被复用， 如果不清理自定义的 ThreadLocal 变量，可能会影响后续业务逻辑和造成内存泄露等问题。尽量在代理中使用 try-finally块进行回收。
 
+```
   正例：
-
     objectThreadLocal.set(userInfo);
      try {
     // ...
     } finally {
     objectThreadLocal.remove();
     }
+```    
 
-7.【强制】高并发时，同步调用应该去考量锁的性能损耗。能用无锁数据结构，就不要用锁；能锁区块，就不要锁整个方法体；能用对象锁，就不要用类锁。
+7. 【强制】高并发时，同步调用应该去考量锁的性能损耗。能用无锁数据结构，就不要用锁；能锁区块，就不要锁整个方法体；能用对象锁，就不要用类锁。
 
   说明：尽可能使加锁的代码块工作量尽可能的小，避免在锁代码块中调用 RPC 方法。
 
-8.【强制】对多个资源、数据库表、对象同时加锁时，需要保持一致的加锁顺序，否则可能会造成死锁。
+8. 【强制】对多个资源、数据库表、对象同时加锁时，需要保持一致的加锁顺序，否则可能会造成死锁。
 
   说明：线程一需要对表 A、B、C 依次全部加锁后才可以进行更新操作，那么线程二的加锁顺序也必须是 A、 B、C，否则可能出现死锁。
 
-9.【强制】在使用阻塞等待获取锁的方式中，必须在 try 代码块之外，并且在加锁方法与 try 代码块之间没有任何可能抛出异常的方法调用，避免加锁成功后，在 finally 中无法解锁。
+9. 【强制】在使用阻塞等待获取锁的方式中，必须在 try 代码块之外，并且在加锁方法与 try 代码块之间没有任何可能抛出异常的方法调用，避免加锁成功后，在 finally 中无法解锁。
 
   说明一：如果在 lock 方法与 try 代码块之间的方法调用抛出异常，那么无法解锁，造成其它线程无法成功获取锁。
 
@@ -899,8 +955,8 @@ contains()进行遍历去重或者判断包含操作。
 
   说明三：在 Lock 对象的 lock 方法实现中可能抛出 unchecked 异常，产生的后果与说明二相同。
 
+```
   正例：
-
     Lock lock = new XxxLock();
     // ...
     lock.lock(); 
@@ -923,50 +979,52 @@ contains()进行遍历去重或者判断包含操作。
     } finally {
         lock.unlock();
     }
+```
 
-10.【强制】在使用尝试机制来获取锁的方式中，进入业务代码块之前，必须先判断当前线程是否持有锁。锁的释放规则与锁的阻塞等待方式相同。
+10. 【强制】在使用尝试机制来获取锁的方式中，进入业务代码块之前，必须先判断当前线程是否持有锁。锁的释放规则与锁的阻塞等待方式相同。
 
   说明：Lock 对象的 unlock 方法在执行时，它会调用 AQS 的 tryRelease 方法（取决于具体实现类），如果当前线程不持有锁，则抛出 IllegalMonitorStateException 异常。
 
+```
   正例：
-
     Lock lock = new XxxLock();
     // ...
     boolean isLocked = lock.tryLock();
      if (isLocked) {
         try {
-          doSomething(); 
+          doSomething();
           doOthers();
         } finally {
           lock.unlock();
-        } 
+        }
       }
+```
 
-11.【强制】并发修改同一记录时，避免更新丢失，需要加锁。要么在应用层加锁，要么在缓存加锁，要么在数据库层使用乐观锁，使用 version 作为更新依据。
+11. 【强制】并发修改同一记录时，避免更新丢失，需要加锁。要么在应用层加锁，要么在缓存加锁，要么在数据库层使用乐观锁，使用 version 作为更新依据。
 
   说明：如果每次访问冲突概率小于 20%，推荐使用乐观锁，否则使用悲观锁。乐观锁的重试次数不得小于3 次。
 
-12.【强制】多线程并行处理定时任务时，Timer 运行多个 TimeTask 时，只要其中之一没有捕获抛出的异常，其它任务便会自动终止运行，使用 ScheduledExecutorService 则没有这个问题。
+12. 【强制】多线程并行处理定时任务时，Timer 运行多个 TimeTask 时，只要其中之一没有捕获抛出的异常，其它任务便会自动终止运行，使用 ScheduledExecutorService 则没有这个问题。
 
-13.【推荐】资金相关的金融敏感信息，使用悲观锁策略。
+13. 【推荐】资金相关的金融敏感信息，使用悲观锁策略。
 
   说明：乐观锁在获得锁的同时已经完成了更新操作，校验逻辑容易出现漏洞，另外，乐观锁对冲突的解决策略有较复杂的要求，处理不当容易造成系统压力或数据异常，所以资金相关的金融敏感信息不建议使用乐观锁更新。
 
   正例：悲观锁遵循一锁、二判、三更新、四释放的原则。
 
-14.【推荐】使用 CountDownLatch 进行异步转同步操作，每个线程退出前必须调用 countDown 方法，线程执行代码注意 catch 异常，确保 countDown 方法被执行到，避免主线程无法执行至await 方法，直到超时才返回结果。
+14. 【推荐】使用 CountDownLatch 进行异步转同步操作，每个线程退出前必须调用 countDown 方法，线程执行代码注意 catch 异常，确保 countDown 方法被执行到，避免主线程无法执行至await 方法，直到超时才返回结果。
 
   说明：注意，子线程抛出异常堆栈，不能在主线程 try-catch 到。
 
-15.【推荐】避免 Random 实例被多线程使用，虽然共享该实例是线程安全的，但会因竞争同一seed导致的性能下降。
+15. 【推荐】避免 Random 实例被多线程使用，虽然共享该实例是线程安全的，但会因竞争同一seed导致的性能下降。
 
   说明：Random 实例包括 java.util.Random 的实例或者 Math.random()的方式。
   正例：在 JDK7 之后，可以直接使用 API ThreadLocalRandom，而在 JDK7 之前，需要编码保证每个线程持有一个单独的 Random 实例。
 
-16.【推荐】通过双重检查锁（double-checked locking）（在并发场景下）存在延迟初始化的优化问题隐患（可参考 The "Double-Checked Locking is Broken" Declaration），推荐解决方案中较为简单一种（适用于 JDK5 及以上版本），将目标属性声明为 volatile 型，比如将 helper 的属性声明修改为`private volatile Helper helper = null;`
+16. 【推荐】通过双重检查锁（double-checked locking）（在并发场景下）存在延迟初始化的优化问题隐患（可参考 The "Double-Checked Locking is Broken" Declaration），推荐解决方案中较为简单一种（适用于 JDK5 及以上版本），将目标属性声明为 volatile 型，比如将 helper 的属性声明修改为`private volatile Helper helper = null;`
 
+```
 正例：
-
     public class LazyInitDemo {
         private volatile Helper helper = null;
         public Helper getHelper() { 
@@ -975,20 +1033,21 @@ contains()进行遍历去重或者判断包含操作。
                 if (helper == null) { 
                   helper = new Helper(); 
                 }
-            }
+             }
           }
           return helper;
         }
         // other methods and fields...
     }
+```
 
-17.【参考】volatile 解决多线程内存不可见问题。对于一写多读，是可以解决变量同步问题，但是如果多写，同样无法解决线程安全问题。
+17. 【参考】volatile 解决多线程内存不可见问题。对于一写多读，是可以解决变量同步问题，但是如果多写，同样无法解决线程安全问题。
 
   说明：如果是 count++操作，使用如下类实现：AtomicInteger count = new AtomicInteger(); count.addAndGet(1); 如果是JDK8，推荐使用LongAdder 对象，比 AtomicLong 性能更好（减少乐观锁的重试次数）。
 
-18.【参考】HashMap 在容量不够进行 resize 时由于高并发可能出现死链，导致 CPU 飙升，在开发过程中注意规避此风险。
+18. 【参考】HashMap 在容量不够进行 resize 时由于高并发可能出现死链，导致 CPU 飙升，在开发过程中注意规避此风险。
 
-19.【参考】ThreadLocal 对象使用 static 修饰，ThreadLocal 无法解决共享对象的更新问题。说明：这个变量是针对一个线程内所有操作共享的，所以设置为静态变量，所有此类实例共享此静态变量， 也就是说在类第一次被使用时装载，只分配一块存储空间，所有此类的对象(只要是这个线程内定义的)都可以操控这个变量。
+19. 【参考】ThreadLocal 对象使用 static 修饰，ThreadLocal 无法解决共享对象的更新问题。说明：这个变量是针对一个线程内所有操作共享的，所以设置为静态变量，所有此类实例共享此静态变量， 也就是说在类第一次被使用时装载，只分配一块存储空间，所有此类的对象(只要是这个线程内定义的)都可以操控这个变量。
 
 ### 控制语句
 
@@ -996,9 +1055,10 @@ contains()进行遍历去重或者判断包含操作。
 
 说明：注意 break 是退出 switch 语句块，而 return 是退出方法体。
 
-2.【强制】当 switch 括号内的变量类型为 String 并且此变量为外部参数时，必须先进行 null判断。
+2. 【强制】当 switch 括号内的变量类型为 String 并且此变量为外部参数时，必须先进行 null判断。
     反例：如下的代码输出是什么？
 
+```
     public class SwitchString {
         public static void main(String[] args) { 
           method(null);
@@ -1019,13 +1079,14 @@ contains()进行遍历去重或者判断包含操作。
           } 
         } 
       }
+```
 
-3.【强制】在 if/else/for/while/do 语句中必须使用大括号。
+3. 【强制】在 if/else/for/while/do 语句中必须使用大括号。
 
   说明：即使只有一行代码，也禁止不采用大括号的编码方式：
     `if (condition) statements;`
 
-4.【强制】三目运算符 condition? 表达式 1 : 表达式 2 中，高度注意表达式 1 和 2 在类型对齐时，可能抛出因自动拆箱导致的 NPE 异常。
+4. 【强制】三目运算符 condition? 表达式 1 : 表达式 2 中，高度注意表达式 1 和 2 在类型对齐时，可能抛出因自动拆箱导致的 NPE 异常。
 
   说明：以下两种场景会触发类型对齐的拆箱操作：
 
@@ -1033,37 +1094,41 @@ contains()进行遍历去重或者判断包含操作。
 
   2） 表达式 1 或表达式 2 的值的类型不一致，会强制拆箱升级成表示范围更大的那个类型。
 
+```
    反例：
-
         Integer a = 1; 
         Integer b = 2; 
         Integer c = null; 
         Boolean flag = false;
         // a*b 的结果是 int 类型，那么 c 会强制拆箱成 int 类型，抛出 NPE 异常
         Integer result=(flag? a*b : c);
+ ```
 
-5.【强制】在高并发场景中，避免使用”等于”判断作为中断或退出的条件。
+5. 【强制】在高并发场景中，避免使用”等于”判断作为中断或退出的条件。
 
   说明：如果并发控制没有处理好，容易产生等值判断被“击穿”的情况，使用大于或小于的区间判断条件来代替。
 
   反例：判断剩余奖品数量等于 0 时，终止发放奖品，但因为并发处理错误导致奖品数量瞬间变成了负数，这样的话，活动无法终止。
 
-6.【推荐】当某个方法的代码总行数超过 10 行时，return / throw 等中断逻辑的右大括号后均需要加一个空行。
+6. 【推荐】当某个方法的代码总行数超过 10 行时，return / throw 等中断逻辑的右大括号后均需要加一个空行。
 
   说明：这样做逻辑清晰，有利于代码阅读时重点关注。
 
-7.【推荐】表达异常的分支时，少用 if-else 方式，这种方式可以改写成：
+7. 【推荐】表达异常的分支时，少用 if-else 方式，这种方式可以改写成：
 
+```
     if (condition) {
     ...
     return obj;
     }
     // 接着写 else 的业务逻辑代码;
+```
 
   说明：如果非使用 if()...else if()...else...方式表达逻辑，避免后续代码维护困难，请勿超过 3 层。
 
   正例：超过 3 层的 if-else 的逻辑判断代码可以使用卫语句、策略模式、状态模式等来实现，其中卫语句示例如下：
 
+```
     public void findBoyfriend (Man man) { 
       if (man.isUgly()) {
         System.out.println("本姑娘是外貌协会的资
@@ -1080,13 +1145,15 @@ contains()进行遍历去重或者判断包含操作。
       }
        System.out.println("可以先交往一段时间看看");
     }
+```
 
-8.【推荐】除常用方法（如 getXxx/isXxx）等外，不要在条件判断中执行其它复杂的语句，将复杂逻辑判断的结果赋值给一个有意义的布尔变量名，以提高可读性。
+8. 【推荐】除常用方法（如 getXxx/isXxx）等外，不要在条件判断中执行其它复杂的语句，将复杂逻辑判断的结果赋值给一个有意义的布尔变量名，以提高可读性。
 
   说明：很多 if 语句内的逻辑表达式相当复杂，与、或、取反混合运算，甚至各种方法纵深调用，理解成本非常高。如果赋值一个非常好理解的布尔变量名字，则是件令人爽心悦目的事情。
 
   正例：
 
+```
     // 伪代码如下
     final boolean existed = (file.open(fileName, "w") != null) 
     && (...) || (...); if (existed) {
@@ -1101,11 +1168,13 @@ contains()进行遍历去重或者判断包含操作。
     ), arg)) {
           selfInterrupt();
     }
+```
 
-9.【推荐】不要在其它表达式（尤其是条件表达式）中，插入赋值语句。
+9. 【推荐】不要在其它表达式（尤其是条件表达式）中，插入赋值语句。
 
   说明：赋值点类似于人体的穴位，对于代码的理解至关重要，所以赋值语句需要清晰地单独成为一行。
 
+```
   反例：
 
     public Lock getLock(boolean fair) {
@@ -1115,20 +1184,23 @@ contains()进行遍历去重或者判断包含操作。
         sync==fair return (sync = fair) ? new FairSync() : 
         new NonfairSync();
     }
+```
 
-10.【推荐】循环体中的语句要考量性能，以下操作尽量移至循环体外处理，如定义对象、变量、获取数据库连接，进行不必要的 try-catch 操作（这个 try-catch 是否可以移至循环体外）。
+10. 【推荐】循环体中的语句要考量性能，以下操作尽量移至循环体外处理，如定义对象、变量、获取数据库连接，进行不必要的 try-catch 操作（这个 try-catch 是否可以移至循环体外）。
 
-11.【推荐】避免采用取反逻辑运算符。
+11. 【推荐】避免采用取反逻辑运算符。
 
   说明：取反逻辑不利于快速理解，并且取反逻辑写法一般都存在对应的正向逻辑写法。
-    正例：使用 if (x < 628) 来表达 x 小于 628。
+
+  正例：使用 if (x < 628) 来表达 x 小于 628。
 
   反例：使用 if (!(x >= 628)) 来表达 x 小于 628。
   
-12.【推荐】公开接口需要进行入参保护，尤其是批量操作的接口。
-反例：某业务系统，提供一个用户批量查询的接口，API 文档上有说最多查多少个，但接口实现上没做任何保护，导致调用方传了一个 1000 的用户 id 数组过来后，查询信息后，内存爆了。
+12. 【推荐】公开接口需要进行入参保护，尤其是批量操作的接口。
 
-13.【参考】下列情形，需要进行参数校验：
+  反例：某业务系统，提供一个用户批量查询的接口，API 文档上有说最多查多少个，但接口实现上没做任何保护，导致调用方传了一个 1000 的用户 id 数组过来后，查询信息后，内存爆了。
+
+13. 【参考】下列情形，需要进行参数校验：
 
   1） 调用频次低的方法。
 
@@ -1161,12 +1233,13 @@ contains()进行遍历去重或者判断包含操作。
 3. 【强制】所有的类都必须添加创建者和创建日期。
     说明：在设置模板时，注意 IDEA 的@author 为`${USER}`，而 eclipse 的@author 为`${user}`，大小写有区别，而日期的设置统一为 yyyy/MM/dd 的格式。
 
+```
     正例：
-
         /**
         * @author yangguanbao
         * @date 2016/10/31
         */
+```
 
 4. 【强制】方法内部单行注释，在被注释语句上方另起一行，使用//注释。方法内部多行注释使用`/* */`注释，注意与代码对齐。
 
@@ -1190,13 +1263,14 @@ contains()进行遍历去重或者判断包含操作。
 
 11. 【参考】好的命名、代码结构是自解释的，注释力求精简准确、表达到位。避免出现注释的一个极端：过多过滥的注释，代码的逻辑一旦修改，修改注释又是相当大的负担。
 
+```
     反例：
-
         // put elephant into
         fridge put(elephant,
         fridge);
+```
 
-    方法名 put，加上两个有意义的变量名 elephant 和fridge，已经说明了这是在干什么，语义清晰的代码不需要额外的注释。
+方法名 put，加上两个有意义的变量名 elephant 和fridge，已经说明了这是在干什么，语义清晰的代码不需要额外的注释。
 
 12. 【参考】特殊注释标记，请注明标记人与标记时间。注意及时处理这些标记，通过标记扫描， 经常清理此类标记。线上故障有时候就是来源于这些标记处的代码。
 
@@ -1235,8 +1309,7 @@ contains()进行遍历去重或者判断包含操作。
 
     说明：此条约定有利于数据层面上的协作更加高效，减少前端很多琐碎的 null 判断。
 
-3. 【强制】服务端发生错误时，返回给前端的响应信息必须包含 HTTP 状态码，errorCode、
-errorMessage、用户提示信息四个部分。
+3. 【强制】服务端发生错误时，返回给前端的响应信息必须包含 HTTP 状态码，errorCode、errorMessage、用户提示信息四个部分。
 
     说明：四个部分的涉众对象分别是浏览器、前端开发、错误排查人员、用户。其中输出给用户的提示信息
 
@@ -1254,16 +1327,13 @@ errorMessage、用户提示信息四个部分。
 
     5） 500 Internal Server Error: 服务器内部错误。
 
-4. 【强制】在前后端交互的 JSON 格式数据中，所有的 key 必须为小写字母开始的
-lowerCamelCase 风格，符合英文表达习惯，且表意完整。
+4. 【强制】在前后端交互的 JSON 格式数据中，所有的 key 必须为小写字母开始的lowerCamelCase 风格，符合英文表达习惯，且表意完整。
 
     正例：errorCode / errorMessage / assetStatus / menuList / orderList / configFlag
 
-    反例：ERRORCODE / ERROR_CODE / error_message / error-message / errormessage /
-    ErrorMessage / msg
+    反例：ERRORCODE / ERROR_CODE / error_message / error-message / errormessage /ErrorMessage / msg
 
-5. 【强制】errorMessage 是前后端错误追踪机制的体现，可以在前端输出到 type="hidden"
-文字类控件中，或者用户端的日志中，帮助我们快速地定位出问题。
+5. 【强制】errorMessage 是前后端错误追踪机制的体现，可以在前端输出到 type="hidden"文字类控件中，或者用户端的日志中，帮助我们快速地定位出问题。
 
 6. 【强制】对于需要使用超大整数的场景，服务端一律使用 String 字符串类型返回，禁止使用Long 类型。
 
@@ -1306,9 +1376,11 @@ lowerCamelCase 风格，符合英文表达习惯，且表意完整。
 ### 其他
 
 1. 【强制】在使用正则表达式时，利用好其预编译功能，可以有效加快正则匹配速度。
+
     说明：不要在方法体内定义：Pattern pattern = Pattern.compile(“规则”);
 
 2. 【强制】避免用 Apache Beanutils 进行属性的 copy。
+
     说明：Apache BeanUtils 性能较差，可以使用其他方案比如 Spring BeanUtils, Cglib BeanCopier，注意均是浅拷贝。
 
 3. 【强制】velocity 调用 POJO 类的属性时，直接使用属性名取值即可，模板引擎会自动按规范调用 POJO的 getXxx()，如果是 boolean 基本数据类型变量（boolean 命名不需要加 is 前缀）， 会自动调用 isXxx()方法。
@@ -1326,12 +1398,14 @@ lowerCamelCase 风格，符合英文表达习惯，且表意完整。
     说明：根据 MVC 理论，视图的职责是展示，不要抢模型和控制器的活。
 
 7. 【推荐】任何数据结构的构造或初始化，都应指定大小，避免数据结构无限增长吃光内存。
+
 8. 【推荐】及时清理不再使用的代码段或配置信息。
 
     说明：对于垃圾代码或过时配置，坚决清理干净，避免程序过度臃肿，代码冗余。
 
     正例：对于暂时被注释掉，后续可能恢复使用的代码片断，在注释代码上方，统一规定使用三个斜杠(///) 来说明注释掉代码的理由。如：
 
+```
         public static void hello() {
             /// 业务方通知活动暂停
             // Business business = new Business();
@@ -1339,6 +1413,7 @@ lowerCamelCase 风格，符合英文表达习惯，且表意完整。
             System.out.println("it's
             finished");
         }
+```
 
 ## 异常日志
 
@@ -1364,7 +1439,8 @@ lowerCamelCase 风格，符合英文表达习惯，且表意完整。
 
 4. 【强制】错误码为字符串类型，共 5 位，分成两个部分：错误产生来源+四位数字编号。
 
-    说明：错误产生来源分为 A/B/C，A 表示错误来源于用户，比如参数错误，用户安装版本过低，用户支付超时等问题；B 表示错误来源于当前系统，往往是业务逻辑出错，或程序健壮性差等问题；C 表示错误来源于第三方服务，比如 CDN 服务出错，消息投递超时等问题；四位数字编号从 0001 到 9999，大类之间的步长间距预留 100，参考文末附表 3。
+    说明：错误产生来源分为 A/B/C，A 表示错误来源于用户，比如参数错误，用户安装版本过低，用户支付超时等问题；B 表示错误来源于当前系统，往往是业务逻辑出错，或程序健壮性差等问题；C 表示错误来源于
+    第三方服务，比如 CDN 服务出错，消息投递超时等问题；四位数字编号从 0001 到 9999，大类之间的步长间距预留 100，参考文末附表 3。
 
 5. 【强制】编号不与公司业务架构，更不与组织架构挂钩，以先到先得的原则在统一平台上进行， 审批生效，编号即被永久固定。
 
@@ -1380,19 +1456,19 @@ lowerCamelCase 风格，符合英文表达习惯，且表意完整。
 
 9. 【推荐】在获取第三方服务错误码时，向上抛出允许本系统转义，由 C 转为 B，并且在错误信息上带上原有的第三方错误码。
 
-10.【参考】错误码分为一级宏观错误码、二级宏观错误码、三级宏观错误码。
+10. 【参考】错误码分为一级宏观错误码、二级宏观错误码、三级宏观错误码。
 
   说明：在无法更加具体确定的错误场景中，可以直接使用一级宏观错误码，分别是：A0001（用户端错误）、B0001（系统执行出错）、C0001（调用第三方服务出错）。
 
   正例：调用第三方服务出错是一级，中间件错误是二级，消息服务出错是三级。
 
-11.【参考】错误码的后三位编号与 HTTP 状态码没有任何关系。
+11. 【参考】错误码的后三位编号与 HTTP 状态码没有任何关系。
 
-12.【参考】错误码有利于不同文化背景的开发者进行交流与代码协作。
+12. 【参考】错误码有利于不同文化背景的开发者进行交流与代码协作。
 
   说明：英文单词形式的错误码不利于非英语母语国家（如阿拉伯语、希伯来语、俄罗斯语等）之间的开发者互相协作。
 
-13.【参考】错误码即人性，感性认知+口口相传，使用纯数字来进行错误码编排不利于感性记忆和分类。
+13. 【参考】错误码即人性，感性认知+口口相传，使用纯数字来进行错误码编排不利于感性记忆和分类。
 
   说明：数字是一个整体，每位数字的地位和含义是相同的。
 
@@ -1428,8 +1504,8 @@ lowerCamelCase 风格，符合英文表达习惯，且表意完整。
 
     说明：try 块中的 return 语句执行成功后，并不马上返回，而是继续执行 finally 块中的语句，如果此处存在 return 语句，则在此直接返回，无情丢弃掉try 块中的返回点。
 
+```
     反例：
-
         private int x = 0;
         public int 
         checkReturn() { 
@@ -1441,6 +1517,7 @@ lowerCamelCase 风格，符合英文表达习惯，且表意完整。
             return ++x;
           } 
         }
+```
 
 8. 【强制】捕获异常与抛异常，必须是完全匹配，或者捕获异常是抛异常的父类。
 
@@ -1478,6 +1555,7 @@ lowerCamelCase 风格，符合英文表达习惯，且表意完整。
 13. 【参考】对于公司外的 http/api 开放接口必须使用 errorCode；而应用内部推荐异常抛出； 跨应用间RPC 调用优先考虑使用 Result 方式，封装 isSuccess()方法、errorCode、errorMessage；而应用内部直接抛出异常即可。
 
     说明：关于 RPC 方法返回方式使用 Result 方式的理由：
+
     1） 使用抛异常返回方式，调用方如果没有捕获到就会产生运行时错误。
 
     2） 如果不加栈信息，只是 new 自定义异常，加入自己的理解的 error message，对于调用端解决问题的帮助不会太多。如果加了栈信息，在频繁调用出错的情况下，数据序列化和传输的性能损耗也是问题。
@@ -1488,16 +1566,20 @@ lowerCamelCase 风格，符合英文表达习惯，且表意完整。
 
     说明：日志框架（SLF4J、JCL--Jakarta Commons Logging）的使用方式（推荐使用 SLF4J）使用 SLF4J：
 
+```
         import org.slf4j.Logger;
         import org.slf4j.LoggerFactory;
         private static final Logger logger = LoggerFactory.getLogger(Test.class);
+```
 
-    使用 JCL：
+使用 JCL：
 
+```
         import
         org.apache.commons.logging.Log; import
         org.apache.commons.logging.LogFactory;
         private static final Log log = LogFactory.getLog(Test.class);
+```
 
 2. 【强制】所有日志文件至少保存 15 天，因为有些异常具备以“周”为频次发生的特点。对于当天日志，以“应用名.log”来保存，保存在/home/admin/应用名/logs/目录下，过往日志格式为: {logname}.log.{保存日期}，日期格式：yyyy-MM-dd
 
@@ -1513,27 +1595,29 @@ appName_logType_logName.log。logType:日志类型，如 stats/monitor/access �
     正例：mppserver 应用中单独监控时区转换异常，如：mppserver_monitor_timeZoneConvert.log
 
 5. 【强制】在日志输出时，字符串变量之间的拼接使用占位符的方式。
-说明：因为 String 字符串的拼接会使用 StringBuilder 的 append()方式，有一定的性能损耗。使用占位符仅是替换动作，可以有效提升性能。
+
+    说明：因为 String 字符串的拼接会使用 StringBuilder 的 append()方式，有一定的性能损耗。使用占位符仅是替换动作，可以有效提升性能。
 
     正例：logger.debug("Processing trade with id: {} and symbol: {}", id, symbol);
 
 6. 【强制】对于 trace/debug/info级别的日志输出，必须进行日志级别的开关判断。
-说明：虽然在 debug(参数)的方法体内第一行代码 isDisabled(Level.DEBUG_INT)为真时（Slf4j的常见实现 Log4j 和 Logback ） ， 就 直 接 return ， 但 是 参 数 可 能 会 进 行 字 符 串 拼 接 运 算 。 此 外 ， 如 果debug(getName()) 这种参数内有 getName()方法调用，无谓浪费方法调用的开销。
 
+    说明：虽然在 debug(参数)的方法体内第一行代码 isDisabled(Level.DEBUG_INT)为真时（Slf4j的常见实现 Log4j 和 Logback ） ， 就 直 接 return ， 但 是 参 数 可 能 会 进 行 字 符 串 拼 接 运 算 。 此 外 ， 如 果debug(getName()) 这种参数内有 getName()方法调用，无谓浪费方法调用的开销。
+
+```
     正例：
-
         // 如果判断为真，那么可以输出 trace 和 debug 级别的日志
         if (logger.isDebugEnabled()) {
             logger.debug("Current ID is: {} and name is: {}", id, getName());
         }
+```
 
 7. 【强制】避免重复打印日志，浪费磁盘空间，务必在日志配置文件中设置 additivity=false。
 
     正例：
     `<logger name="com.taobao.dubbo.config" additivity="false">`
 
-8. 【强制】生产环境禁止直接使用 System.out 或 System.err 输出日志或使用
-e.printStackTrace()打印异常堆栈。
+8. 【强制】生产环境禁止直接使用 System.out 或 System.err 输出日志或使用e.printStackTrace()打印异常堆栈。
 
     说明：标准日志输出与标准错误输出文件每次 Jboss 重启时才滚动，如果大量输出送往这两个文件，容易造成文件大小超过操作系统大小限制。
 
@@ -1563,39 +1647,43 @@ e.printStackTrace()打印异常堆栈。
 
 1. 【强制】好的单元测试必须遵守 AIR 原则。
 
-    说明：单元测试在线上运行时，感觉像空气（AIR）一样感觉不到，但在测试质量的保障上，却是非常关键
-    的。好的单元测试宏观上来说，具有自动化、独立性、可重复执行的特点。
+    说明：单元测试在线上运行时，感觉像空气（AIR）一样感觉不到，但在测试质量的保障上，却是非常关键的。好的单元测试宏观上来说，具有自动化、独立性、可重复执行的特点。
     * A：Automatic（自动化）
+
     * I：Independent（独立性）
+
     * R：Repeatable（可重复）
 
 2. 【强制】单元测试应该是全自动执行的，并且非交互式的。测试用例通常是被定期执行的，执行过程必须完全自动化才有意义。输出结果需要人工检查的测试不是一个好的单元测试。单元测试中不准使用System.out 来进行人肉验证，必须使用 assert 来验证。
 
 3. 【强制】保持单元测试的独立性。为了保证单元测试稳定可靠且便于维护，单元测试用例之间决不能互相调用，也不能依赖执行的先后次序。
 
-  反例：method2 需要依赖 method1 的执行，将执行结果作为 method2 的输入。
+    反例：method2 需要依赖 method1 的执行，将执行结果作为 method2 的输入。
 
-4.【强制】单元测试是可以重复执行的，不能受到外界环境的影响。
-说明：单元测试通常会被放到持续集成中，每次有代码 check in 时单元测试都会被执行。如果单测对外部环境（网络、服务、中间件等）有依赖，容易导致持续集成机制的不可用。
-正例：为了不受外界环境影响，要求设计代码时就把 SUT 的依赖改成注入，在测试时用 spring 这样的 DI框架注入一个本地（内存）实现或者 Mock 实现。
+4. 【强制】单元测试是可以重复执行的，不能受到外界环境的影响。
 
-5.【强制】对于单元测试，要保证测试粒度足够小，有助于精确定位问题。单测粒度至多是类级别，一般是方法级别。
+    说明：单元测试通常会被放到持续集成中，每次有代码 check in 时单元测试都会被执行。如果单测对外部环境（网络、服务、中间件等）有依赖，容易导致持续集成机制的不可用。
 
-  说明：只有测试粒度小才能在出错时尽快定位到出错位置。单测不负责检查跨类或者跨系统的交互逻辑，那是集成测试的领域。
+    正例：为了不受外界环境影响，要求设计代码时就把 SUT 的依赖改成注入，在测试时用 spring 这样的 DI框架注入一个本地（内存）实现或者 Mock 实现。
 
-6.【强制】核心业务、核心应用、核心模块的增量代码确保单元测试通过。
+5. 【强制】对于单元测试，要保证测试粒度足够小，有助于精确定位问题。单测粒度至多是类级别，一般是方法级别。
 
-  说明：新增代码及时补充单元测试，如果新增代码影响了原有单元测试，请及时修正。
+    说明：只有测试粒度小才能在出错时尽快定位到出错位置。单测不负责检查跨类或者跨系统的交互逻辑，那是集成测试的领域。
 
-7.【强制】单元测试代码必须写在如下工程目录：src/test/java，不允许写在业务代码目录下。
+6. 【强制】核心业务、核心应用、核心模块的增量代码确保单元测试通过。
 
-  说明：源码编译时会跳过此目录，而单元测试框架默认是扫描此目录。
+    说明：新增代码及时补充单元测试，如果新增代码影响了原有单元测试，请及时修正。
 
-8.【推荐】单元测试的基本目标：语句覆盖率达到 70%；核心模块的语句覆盖率和分支覆盖率都要达到 100%
+7. 【强制】单元测试代码必须写在如下工程目录：src/test/java，不允许写在业务代码目录下。
 
-  说明：在工程规约的应用分层中提到的 DAO 层，Manager 层，可重用度高的 Service，都应该进行单元测试。
+    说明：源码编译时会跳过此目录，而单元测试框架默认是扫描此目录。
 
-9.【推荐】编写单元测试代码遵守 BCDE 原则，以保证被测试模块的交付质量。
+8. 【推荐】单元测试的基本目标：语句覆盖率达到 70%；核心模块的语句覆盖率和分支覆盖率都要达到 100%
+
+    说明：在工程规约的应用分层中提到的 DAO 层，Manager 层，可重用度高的 Service，都应该进行单元测试。
+
+9. 【推荐】编写单元测试代码遵守 BCDE 原则，以保证被测试模块的交付质量。
+
   B：Border，边界值测试，包括循环边界、特殊取值、特殊时间点、数据顺序等。
 
   C：Correct，正确的输入，并得到预期的结果。
@@ -1604,21 +1692,21 @@ e.printStackTrace()打印异常堆栈。
   
   E：Error，强制错误信息输入（如：非法数据、异常流程、业务允许外等），并得到预期的结果。
 
-10.【推荐】对于数据库相关的查询，更新，删除等操作，不能假设数据库里的数据是存在的，或者直接操作数据库把数据插入进去，请使用程序插入或者导入数据的方式来准备数据。
+10. 【推荐】对于数据库相关的查询，更新，删除等操作，不能假设数据库里的数据是存在的，或者直接操作数据库把数据插入进去，请使用程序插入或者导入数据的方式来准备数据。
 
   反例：删除某一行数据的单元测试，在数据库中，先直接手动增加一行作为删除目标，但是这一行新增数据并不符合业务插入规则，导致测试结果异常。
   
-11.【推荐】和数据库相关的单元测试，可以设定自动回滚机制，不给数据库造成脏数据。或者对单元测试产生的数据有明确的前后缀标识。
+11. 【推荐】和数据库相关的单元测试，可以设定自动回滚机制，不给数据库造成脏数据。或者对单元测试产生的数据有明确的前后缀标识。
 
   正例：在阿里巴巴企业智能事业部的内部单元测试中，使用 ENTERPRISE_INTELLIGENCE_UNIT_TEST_的前缀来标识单元测试相关代码。
 
-12.【推荐】对于不可测的代码在适当的时机做必要的重构，使代码变得可测，避免为了达到测试要求而书写不规范测试代码。
+12. 【推荐】对于不可测的代码在适当的时机做必要的重构，使代码变得可测，避免为了达到测试要求而书写不规范测试代码。
 
-13.【推荐】在设计评审阶段，开发人员需要和测试人员一起确定单元测试范围，单元测试最好覆盖所有测试用例（UC）。
+13. 【推荐】在设计评审阶段，开发人员需要和测试人员一起确定单元测试范围，单元测试最好覆盖所有测试用例（UC）。
 
-14.【推荐】单元测试作为一种质量保障手段，在项目提测前完成单元测试，不建议项目发布后补充单元测试用例。
+14. 【推荐】单元测试作为一种质量保障手段，在项目提测前完成单元测试，不建议项目发布后补充单元测试用例。
 
-15.【参考】为了更方便地进行单元测试，业务代码应避免以下情况：
+15. 【参考】为了更方便地进行单元测试，业务代码应避免以下情况：
 
 * 构造方法中做的事情过多。
 * 存在过多的全局变量和静态方法。
@@ -1627,11 +1715,14 @@ e.printStackTrace()打印异常堆栈。
 
   说明：多层条件语句建议使用卫语句、策略模式、状态模式等方式重构。
 
-16.【参考】不要对单元测试存在如下误解：
+16. 【参考】不要对单元测试存在如下误解：
 
 * 那是测试同学干的事情。本文是开发手册，凡是本文内容都是与开发同学强相关的。
+
 * 单元测试代码是多余的。系统的整体功能与各单元部件的测试正常与否是强相关的。
+
 * 单元测试代码不需要维护。一年半载后，那么单元测试几乎处于废弃状态。
+
 * 单元测试与线上故障没有辩证关系。好的单元测试能够最大限度地规避线上故障。
 
 ## 安全规约
@@ -1805,9 +1896,9 @@ e.printStackTrace()打印异常堆栈。
 
   那么即使 c 的区分度更高，也必须把d 放在索引的最前列，即建立组合索引 idx_d_c。
 
-10.【推荐】防止因字段类型不同造成的隐式转换，导致索引失效。
+10. 【推荐】防止因字段类型不同造成的隐式转换，导致索引失效。
 
-11.【参考】创建索引时避免有如下极端误解：
+11. 【参考】创建索引时避免有如下极端误解：
 
 1） 索引宁滥勿缺。认为一个查询就需要建一个索引。
 
@@ -1821,13 +1912,13 @@ e.printStackTrace()打印异常堆栈。
 
   说明：count(*)会统计值为 NULL 的行，而 count(列名)不会统计此列为 NULL 值的行。
 
-2.【强制】count(distinct col) 计算该列除NULL 之外的不重复行数，注意 count(distinct col1, col2) 如果其中一列全为 NULL，那么即使另一列有不同的值，也返回为 0。
+2. 【强制】count(distinct col) 计算该列除NULL 之外的不重复行数，注意 count(distinct col1, col2) 如果其中一列全为 NULL，那么即使另一列有不同的值，也返回为 0。
 
-3.【强制】当某一列的值全是 NULL 时，count(col)的返回结果为 0，但 sum(col)的返回结果为NULL，因此使用 sum()时需注意 NPE 问题。
+3. 【强制】当某一列的值全是 NULL 时，count(col)的返回结果为 0，但 sum(col)的返回结果为NULL，因此使用 sum()时需注意 NPE 问题。
 
   正例：可以使用如下方式来避免 sum 的 NPE 问题：SELECT IFNULL(SUM(column), 0) FROM table;
 
-4.【强制】使用 ISNULL()来判断是否为 NULL 值。
+4. 【强制】使用 ISNULL()来判断是否为 NULL 值。
 
   说明：NULL 与任何值的直接比较都为 NULL。
 
@@ -1839,17 +1930,17 @@ e.printStackTrace()打印异常堆栈。
 
   反例：在 SQL 语句中，如果在 null 前换行，影响可读性。select * from table where column1 is null and column3 is not null; 而`ISNULL(column)`是一个整体，简洁易懂。从性能数据上分析，`ISNULL(column)` 执行效率更快一些。
 
-5.【强制】代码中写分页查询逻辑时，若 count 为 0 应直接返回，避免执行后面的分页语句。
+5. 【强制】代码中写分页查询逻辑时，若 count 为 0 应直接返回，避免执行后面的分页语句。
 
-6.【强制】不得使用外键与级联，一切外键概念必须在应用层解决。
+6. 【强制】不得使用外键与级联，一切外键概念必须在应用层解决。
 
   说明：（概念解释）学生表中的 student_id 是主键，那么成绩表中的 student_id 则为外键。如果更新学生表中的 student_id，同时触发成绩表中的 student_id 更新，即为级联更新。外键与级联更新适用于单机低并发，不适合分布式、高并发集群；级联更新是强阻塞，存在数据库更新风暴的风险；外键影响数据库的插入速度。
 
-7.【强制】禁止使用存储过程，存储过程难以调试和扩展，更没有移植性。
+7. 【强制】禁止使用存储过程，存储过程难以调试和扩展，更没有移植性。
 
-8.【强制】数据订正（特别是删除或修改记录操作）时，要先 select，避免出现误删除，确认无误才能执行更新语句。
+8. 【强制】数据订正（特别是删除或修改记录操作）时，要先 select，避免出现误删除，确认无误才能执行更新语句。
 
-9.【强制】对于数据库中表记录的查询和变更，只要涉及多个表，都需要在列名前加表的别名（或表名）进行限定。
+9. 【强制】对于数据库中表记录的查询和变更，只要涉及多个表，都需要在列名前加表的别名（或表名）进行限定。
 
   说明：对多表进行查询记录、更新记录、删除记录时，如果对操作列没有限定表的别名（或表名），并且操作列在多个表中存在时，就会抛异常。
 
@@ -1857,7 +1948,7 @@ e.printStackTrace()打印异常堆栈。
 
   反例：在某业务中，由于多表关联查询语句没有加表的别名（或表名）的限制，正常运行两年后，最近在某个表中增加一个同名字段，在预发布环境做数据库变更后，线上查询语句出现出 1052 异常：Column  'name' in field list is ambiguous。
 
-10.【推荐】SQL 语句中表的别名前加 as，并且以 t1、t2、t3、...的顺序依次命名。
+10. 【推荐】SQL 语句中表的别名前加 as，并且以 t1、t2、t3、...的顺序依次命名。
 
   说明：
 
@@ -1867,21 +1958,25 @@ e.printStackTrace()打印异常堆栈。
 
   正例：select t1.name from table_first as t1, table_second as t2 where t1.id=t2.id;
 
-11.【推荐】in 操作能避免则避免，若实在避免不了，需要仔细评估 in 后边的集合元素数量，控制在 1000 个之内。
+11. 【推荐】in 操作能避免则避免，若实在避免不了，需要仔细评估 in 后边的集合元素数量，控制在 1000 个之内。
 
-12.【参考】因国际化需要，所有的字符存储与表示，均采用 utf8 字符集，那么字符计数方法需要注意。
+12. 【参考】因国际化需要，所有的字符存储与表示，均采用 utf8 字符集，那么字符计数方法需要注意。
+
     说明：
+
     SELECT LENGTH("轻松工作")； 返回为 12
     SELECT CHARACTER_LENGTH("轻松工作")； 返回为 4
     如果需要存储表情，那么选择 utf8mb4 来进行存储，注意它与 utf8 编码的区别。
 
-13.【参考】TRUNCATE TABLE 比 DELETE 速度快，且使用的系统和事务日志资源少，但TRUNCATE无事务且不触发 trigger，有可能造成事故，故不建议在开发代码中使用此语句。
+13. 【参考】TRUNCATE TABLE 比 DELETE 速度快，且使用的系统和事务日志资源少，但TRUNCATE无事务且不触发 trigger，有可能造成事故，故不建议在开发代码中使用此语句。
 说明：TRUNCATE TABLE 在功能上与不带 WHERE 子句的 DELETE 语句相同。
 
 ### ORM 映射
 
 1. 【强制】在表查询中，一律不要使用 * 作为查询的字段列表，需要哪些字段必须明确写明。  
+
     说明：
+
     1）增加查询分析器解析成本。
 
     2）增减字段容易与 resultMap 配置不一致。
@@ -1901,11 +1996,13 @@ e.printStackTrace()打印异常堆栈。
 5. 【强制】iBATIS 自带的 queryForList(String statementName,int start,int size)不推荐使用。
 
     说明：其实现方式是在数据库取到 statementName 对应的 SQL 语句的所有记录，再通过 subList 取start,size 的子集合。
-    正例：
 
+```
+    正例：
         Map<String, Object> map = new
         HashMap<>(16); map.put("start", start);
         map.put("size", size);
+```
 
 6. 【强制】不允许直接拿 HashMap 与 Hashtable 作为查询结果集的输出。
 
@@ -1928,8 +2025,7 @@ e.printStackTrace()打印异常堆栈。
 ![业务架构](../img/Java.png)
 
 * 开放 API 层：可直接封装 Service 接口暴露成 RPC 接口；通过 Web 封装成http 接口；网关控制层等。
-* 终端显示层：各个端的模板渲染并执行显示的层。当前主要是 velocity 渲染，JS 渲染，JSP 渲染，移
-动端展示等。
+* 终端显示层：各个端的模板渲染并执行显示的层。当前主要是 velocity 渲染，JS 渲染，JSP 渲染，移动端展示等。
 * Web 层：主要是对访问控制进行转发，各类基本参数校验，或者不复用的业务简单处理等。
 * Service 层：相对具体的业务逻辑服务层。
 * Manager 层：通用业务处理层，它有如下特征：
@@ -1944,9 +2040,9 @@ e.printStackTrace()打印异常堆栈。
 * 第三方服务：包括其它部门 RPC 服务接口，基础平台，其它公司的 HTTP 接口，如淘宝开放平台、支付宝付款服务、高德地图服务等。
 * 外部数据接口：外部（应用）数据存储服务提供的接口，多见于数据迁移场景中。
 
-2.【参考】（分层异常处理规约）在 DAO 层，产生的异常类型有很多，无法用细粒度的异常进行 catch，使用 catch(Exception e) 方 式 ， 并 throw new DAOException(e) ， 不 需 要 打 印 日 志 ， 因 为 日 志 在Manager/Service 层一定需要捕获并打印到日志文件中去，如果同台服务器再打日志，浪费性能和存储。在 Service 层出现异常时，必须记录出错日志到磁盘，尽可能带上参数信息， 相当于保护案发现场。Manager 层与 Service 同机部署，日志方式与 DAO 层处理一致，如果是单独部署，则采用与Service 一致的处理方式。Web 层绝不应该继续往上抛异常，因为已经处于顶层，如果意识到这个异常将导致页面无法正常渲染，那么就应该直接跳转到友好错误页面，尽量加上友好的错误提示信息。开放接口层要将异常处理成错误码和错误信息方式返回。
+2. 【参考】（分层异常处理规约）在 DAO 层，产生的异常类型有很多，无法用细粒度的异常进行 catch，使用 catch(Exception e) 方 式 ， 并 throw new DAOException(e) ， 不 需 要 打 印 日 志 ， 因 为 日 志 在Manager/Service 层一定需要捕获并打印到日志文件中去，如果同台服务器再打日志，浪费性能和存储。在 Service 层出现异常时，必须记录出错日志到磁盘，尽可能带上参数信息， 相当于保护案发现场。Manager 层与 Service 同机部署，日志方式与 DAO 层处理一致，如果是单独部署，则采用与Service 一致的处理方式。Web 层绝不应该继续往上抛异常，因为已经处于顶层，如果意识到这个异常将导致页面无法正常渲染，那么就应该直接跳转到友好错误页面，尽量加上友好的错误提示信息。开放接口层要将异常处理成错误码和错误信息方式返回。
 
-3.【参考】分层领域模型规约：QueryBODTO
+3. 【参考】分层领域模型规约：QueryBODTO
 
 * DO（Data Object）：此对象与数据库表结构一一对应，通过 DAO 层向上传输数据源对象。
 * （Data Transfer Object）：数据传输对象，Service 或 Manager 向外传输的对象。
@@ -1966,11 +2062,11 @@ e.printStackTrace()打印异常堆栈。
 
 2） ArtifactID 格式：产品线名-模块名。语义不重复不遗漏，先到中央仓库去查证一下。
 
-正例：dubbo-client / fastjson-api / jstorm-tool
+  正例：dubbo-client / fastjson-api / jstorm-tool
 
 3） Version：详细规定参考下方。
 
-2.【强制】二方库版本号命名方式：主版本号.次版本号.修订号
+2. 【强制】二方库版本号命名方式：主版本号.次版本号.修订号
 
 1） 主版本号：产品方向改变，或者大规模 API 不兼容，或者架构不兼容升级。
 
@@ -1978,42 +2074,42 @@ e.printStackTrace()打印异常堆栈。
 
 3） 修订号：保持完全兼容性，修复 BUG、新增次要功能特性等。
 
-说明：注意起始版本号必须为：1.0.0，而不是 0.0.1。
+  说明：注意起始版本号必须为：1.0.0，而不是 0.0.1。
 
-反例：仓库内某二方库版本号从 1.0.0.0 开始，一直默默“升级”成 1.0.0.64，完全失去版本的语义信息。
+  反例：仓库内某二方库版本号从 1.0.0.0 开始，一直默默“升级”成 1.0.0.64，完全失去版本的语义信息。
 
-3.【强制】线上应用不要依赖 SNAPSHOT 版本（安全包除外）；正式发布的类库必须先去中央仓库进行查证，使 RELEASE 版本号有延续性，且版本号不允许覆盖升级。
+3. 【强制】线上应用不要依赖 SNAPSHOT 版本（安全包除外）；正式发布的类库必须先去中央仓库进行查证，使 RELEASE 版本号有延续性，且版本号不允许覆盖升级。
 
-说明：不依赖 SNAPSHOT 版本是保证应用发布的幂等性。另外，也可以加快编译时的打包构建。
+  说明：不依赖 SNAPSHOT 版本是保证应用发布的幂等性。另外，也可以加快编译时的打包构建。
 
-4.【强制】二方库的新增或升级，保持除功能点之外的其它 jar 包仲裁结果不变。如果有改变， 必须明确评估和验证。
+4. 【强制】二方库的新增或升级，保持除功能点之外的其它 jar 包仲裁结果不变。如果有改变， 必须明确评估和验证。
 
-说明：在升级时，进行 dependency:resolve 前后信息比对，如果仲裁结果完全不一致，那么通过dependency:tree 命令，找出差异点，进行`<exclude>`排除 jar 包。
+  说明：在升级时，进行 dependency:resolve 前后信息比对，如果仲裁结果完全不一致，那么通过dependency:tree 命令，找出差异点，进行`<exclude>`排除 jar 包。
 
-5.【强制】二方库里可以定义枚举类型，参数可以使用枚举类型，但是接口返回值不允许使用枚举类型或者包含枚举类型的 POJO 对象。
+5. 【强制】二方库里可以定义枚举类型，参数可以使用枚举类型，但是接口返回值不允许使用枚举类型或者包含枚举类型的 POJO 对象。
 
-6.【强制】依赖于一个二方库群时，必须定义一个统一的版本变量，避免版本号不一致。
-说明：依赖 springframework-core,-context,-beans，它们都是同一个版本，可以定义一个变量来保存版本：${spring.version}，定义依赖的时候，引用该版本。
+6. 【强制】依赖于一个二方库群时，必须定义一个统一的版本变量，避免版本号不一致。
 
-7.【强制】禁止在子项目的 pom 依赖中出现相同的 GroupId，相同的 ArtifactId，但是不同的
+  说明：依赖 springframework-core,-context,-beans，它们都是同一个版本，可以定义一个变量来保存版本：${spring.version}，定义依赖的时候，引用该版本。
+
+7. 【强制】禁止在子项目的 pom 依赖中出现相同的 GroupId，相同的 ArtifactId，但是不同的
 Version。
 
-说明：在本地调试时会使用各子项目指定的版本号，但是合并成一个 war，只能有一个版本号出现在最后的lib 目录中。曾经出现过线下调试是正确的，发布到线上却出故障的先例。
+  说明：在本地调试时会使用各子项目指定的版本号，但是合并成一个 war，只能有一个版本号出现在最后的lib 目录中。曾经出现过线下调试是正确的，发布到线上却出故障的先例。
 
-8.【推荐】底层基础技术框架、核心数据管理平台、或近硬件端系统谨慎引入第三方实现。
+8. 【推荐】底层基础技术框架、核心数据管理平台、或近硬件端系统谨慎引入第三方实现。
 
-9.【推荐】所有 pom 文件中的依赖声明放在`<dependencies>`语句块中，所有版本仲裁放在
-`<dependencyManagement>`语句块中。
+9. 【推荐】所有 pom 文件中的依赖声明放在`<dependencies>`语句块中，所有版本仲裁放在`<dependencyManagement>`语句块中。
 
-说明：`<dependencyManagement>`里只是声明版本，并不实现引入，因此子项目需要显式的声明依赖，version 和 scope 都读取自父 pom。而`<dependencies>`所有声明在主 pom 的`<dependencies>`里的依赖都会自动引入，并默认被所有的子项目继承。
+  说明：`<dependencyManagement>`里只是声明版本，并不实现引入，因此子项目需要显式的声明依赖，version 和 scope 都读取自父 pom。而`<dependencies>`所有声明在主 pom 的`<dependencies>`里的依赖都会自动引入，并默认被所有的子项目继承。
 
-10.【推荐】二方库不要有配置项，最低限度不要再增加配置项。
+10. 【推荐】二方库不要有配置项，最低限度不要再增加配置项。
 
-11.【推荐】不要使用不稳定的工具包或者 Utils 类。
+11. 【推荐】不要使用不稳定的工具包或者 Utils 类。
 
-说明：不稳定指的是提供方无法做到向下兼容，在编译阶段正常，但在运行时产生异常，因此，尽量使用业界稳定的二方工具包。
+  说明：不稳定指的是提供方无法做到向下兼容，在编译阶段正常，但在运行时产生异常，因此，尽量使用业界稳定的二方工具包。
 
-12.【参考】为避免应用二方库的依赖冲突问题，二方库发布者应当遵循以下原则：
+12. 【参考】为避免应用二方库的依赖冲突问题，二方库发布者应当遵循以下原则：
 
 1） 精简可控原则。移除一切不必要的 API 和依赖，只包含 Service API、必要的领域模型对象、Utils 类、常量、枚举等。如果依赖其它二方库，尽量是 provided 引入，让二方库使用者去依赖具体版本号；无 log 具体实现，只依赖日志框架。
 
@@ -2023,110 +2119,112 @@ Version。
 
 1. 【推荐】高并发服务器建议调小 TCP 协议的 time_wait 超时时间。
 
-说明：操作系统默认 240 秒后，才会关闭处于 time_wait 状态的连接，在高并发访问下，服务器端会因为处于 time_wait 的连接数太多，可能无法建立新的连接，所以需要在服务器上调小此等待值。
+  说明：操作系统默认 240 秒后，才会关闭处于 time_wait 状态的连接，在高并发访问下，服务器端会因为处于 time_wait 的连接数太多，可能无法建立新的连接，所以需要在服务器上调小此等待值。
 
-正例：在 linux 服务器上请通过变更/etc/sysctl.conf 文件去修改该缺省值（秒）：
-net.ipv4.tcp_fin_timeout = 30
+  正例：在 linux 服务器上请通过变更/etc/sysctl.conf 文件去修改该缺省值（秒）：net.ipv4.tcp_fin_timeout = 30
 
-2.【推荐】调大服务器所支持的最大文件句柄数（File Descriptor，简写为 fd）。
+2. 【推荐】调大服务器所支持的最大文件句柄数（File Descriptor，简写为 fd）。
 
-说明：主流操作系统的设计是将 TCP/UDP 连接采用与文件一样的方式去管理，即一个连接对应于一个 fd。主流的linux 服务器默认所支持最大fd 数量为1024，当并发连接数很大时很容易因为fd 不足而出现“open too many files”错误，导致新的连接无法建立。建议将 linux 服务器所支持的最大句柄数调高数倍（与服务器的内存数量相关）。
+  说明：主流操作系统的设计是将 TCP/UDP 连接采用与文件一样的方式去管理，即一个连接对应于一个 fd。主流的linux 服务器默认所支持最大fd 数量为1024，当并发连接数很大时很容易因为fd 不足而出现“open too many files”错误，导致新的连接无法建立。建议将 linux 服务器所支持的最大句柄数调高数倍（与服务器的内存数量相关）。
 
-3.【推荐】给JVM 环境参数设置-XX:+HeapDumpOnOutOfMemoryError 参数，让JVM 碰到 OOM
-场景时输出 dump 信息。
+3. 【推荐】给JVM 环境参数设置-XX:+HeapDumpOnOutOfMemoryError 参数，让JVM 碰到 OOM场景时输出 dump 信息。
 
-说明：OOM 的发生是有概率的，甚至相隔数月才出现一例，出错时的堆内信息对解决问题非常有帮助。
+  说明：OOM 的发生是有概率的，甚至相隔数月才出现一例，出错时的堆内信息对解决问题非常有帮助。
 
-4.【推荐】在线上生产环境，JVM 的 Xms 和 Xmx 设置一样大小的内存容量，避免在 GC 后调整堆大小带来的压力。
+4. 【推荐】在线上生产环境，JVM 的 Xms 和 Xmx 设置一样大小的内存容量，避免在 GC 后调整堆大小带来的压力。
 
-5.【参考】服务器内部重定向必须使用 forward；外部重定向地址必须使用 URL Broker 生成，否则因线上采用 HTTPS 协议而导致浏览器提示“不安全“。此外，还会带来 URL 维护不一致的问题。
+5. 【参考】服务器内部重定向必须使用 forward；外部重定向地址必须使用 URL Broker 生成，否则因线上采用 HTTPS 协议而导致浏览器提示“不安全“。此外，还会带来 URL 维护不一致的问题。
 
 ## 设计规约
 
-1.【强制】存储方案和底层数据结构的设计获得评审一致通过，并沉淀成为文档。
+1. 【强制】存储方案和底层数据结构的设计获得评审一致通过，并沉淀成为文档。
 
-说明：有缺陷的底层数据结构容易导致系统风险上升，可扩展性下降，重构成本也会因历史数据迁移和系统平滑过渡而陡然增加，所以，存储方案和数据结构需要认真地进行设计和评审，生产环境提交执行后，需要进行 double check。
+  说明：有缺陷的底层数据结构容易导致系统风险上升，可扩展性下降，重构成本也会因历史数据迁移和系统平滑过渡而陡然增加，所以，存储方案和数据结构需要认真地进行设计和评审，生产环境提交执行后，需要进行 double check。
 
-正例：评审内容包括存储介质选型、表结构设计能否满足技术方案、存取性能和存储空间能否满足业务发展、表或字段之间的辩证关系、字段名称、字段类型、索引等；数据结构变更（如在原有表中新增字段）也需要进行评审通过后上线。
+  正例：评审内容包括存储介质选型、表结构设计能否满足技术方案、存取性能和存储空间能否满足业务发展、表或字段之间的辩证关系、字段名称、字段类型、索引等；数据结构变更（如在原有表中新增字段）也需要进行评审通过后上线。
 
-2.【强制】在需求分析阶段，如果与系统交互的 User 超过一类并且相关的 User Case 超过 5 个， 使用用例图来表达更加清晰的结构化需求。
+2. 【强制】在需求分析阶段，如果与系统交互的 User 超过一类并且相关的 User Case 超过 5 个， 使用用例图来表达更加清晰的结构化需求。
 
-3.【强制】如果某个业务对象的状态超过 3 个，使用状态图来表达并且明确状态变化的各个触发条件。
+3. 【强制】如果某个业务对象的状态超过 3 个，使用状态图来表达并且明确状态变化的各个触发条件。
 
-说明：状态图的核心是对象状态，首先明确对象有多少种状态，然后明确两两状态之间是否存在直接转换关系，再明确触发状态转换的条件是什么。
+  说明：状态图的核心是对象状态，首先明确对象有多少种状态，然后明确两两状态之间是否存在直接转换关系，再明确触发状态转换的条件是什么。
 
-正例：淘宝订单状态有已下单、待付款、已付款、待发货、已发货、已收货等。比如已下单与已收货这两种状态之间是不可能有直接转换关系的。
+  正例：淘宝订单状态有已下单、待付款、已付款、待发货、已发货、已收货等。比如已下单与已收货这两种状态之间是不可能有直接转换关系的。
 
-4.【强制】如果系统中某个功能的调用链路上的涉及对象超过 3 个，使用时序图来表达并且明确各调用环节的输入与输出。
+4. 【强制】如果系统中某个功能的调用链路上的涉及对象超过 3 个，使用时序图来表达并且明确各调用环节的输入与输出。
 
-说明：时序图反映了一系列对象间的交互与协作关系，清晰立体地反映系统的调用纵深链路。
+  说明：时序图反映了一系列对象间的交互与协作关系，清晰立体地反映系统的调用纵深链路。
 
-5.【强制】如果系统中模型类超过 5 个，并且存在复杂的依赖关系，使用类图来表达并且明确类之间的关系。
+5. 【强制】如果系统中模型类超过 5 个，并且存在复杂的依赖关系，使用类图来表达并且明确类之间的关系。
 
-说明：类图像建筑领域的施工图，如果搭平房，可能不需要，但如果建造蚂蚁 Z 空间大楼，肯定需要详细的施工图。
+  说明：类图像建筑领域的施工图，如果搭平房，可能不需要，但如果建造蚂蚁 Z 空间大楼，肯定需要详细的施工图。
 
-6.【强制】如果系统中超过 2 个对象之间存在协作关系，并且需要表示复杂的处理流程，使用活动图来表示。
+6. 【强制】如果系统中超过 2 个对象之间存在协作关系，并且需要表示复杂的处理流程，使用活动图来表示。
 
-说明：活动图是流程图的扩展，增加了能够体现协作关系的对象泳道，支持表示并发等。
+  说明：活动图是流程图的扩展，增加了能够体现协作关系的对象泳道，支持表示并发等。
 
-7.【推荐】系统架构设计时明确以下目标：
+7. 【推荐】系统架构设计时明确以下目标：
 
 * 确定系统边界。确定系统在技术层面上的做与不做。
 * 确定系统内模块之间的关系。确定模块之间的依赖关系及模块的宏观输入与输出。
 * 确定指导后续设计与演化的原则。使后续的子系统或模块设计在一个既定的框架内和技术方向上继续演化。
 * 确定非功能性需求。非功能性需求是指安全性、可用性、可扩展性等。
 
-8.【推荐】需求分析与系统设计在考虑主干功能的同时，需要充分评估异常流程与业务边界。反例：用户在淘宝付款过程中，银行扣款成功，发送给用户扣款成功短信，但是支付宝入款时由于断网演练产生异常，淘宝订单页面依然显示未付款，导致用户投诉。
+8. 【推荐】需求分析与系统设计在考虑主干功能的同时，需要充分评估异常流程与业务边界。反例：用户在淘宝付款过程中，银行扣款成功，发送给用户扣款成功短信，但是支付宝入款时由于断网演练产生异常，淘宝订单页面依然显示未付款，导致用户投诉。
 
-9.【推荐】类在设计与实现时要符合单一原则。
+9. 【推荐】类在设计与实现时要符合单一原则。
 
-说明：单一原则最易理解却是最难实现的一条规则，随着系统演进，很多时候，忘记了类设计的初衷。
+  说明：单一原则最易理解却是最难实现的一条规则，随着系统演进，很多时候，忘记了类设计的初衷。
 
-10.【推荐】谨慎使用继承的方式来进行扩展，优先使用聚合/组合的方式来实现。
-说明：不得已使用继承的话，必须符合里氏代换原则，此原则说父类能够出现的地方子类一定能够出现，比如，“把钱交出来”，钱的子类美元、欧元、人民币等都可以出现。
+10. 【推荐】谨慎使用继承的方式来进行扩展，优先使用聚合/组合的方式来实现。
 
-11.【推荐】系统设计阶段，根据依赖倒置原则，尽量依赖抽象类与接口，有利于扩展与维护。
-说明：低层次模块依赖于高层次模块的抽象，方便系统间的解耦。
+  说明：不得已使用继承的话，必须符合里氏代换原则，此原则说父类能够出现的地方子类一定能够出现，比如，“把钱交出来”，钱的子类美元、欧元、人民币等都可以出现。
 
-12.【推荐】系统设计阶段，注意对扩展开放，对修改闭合。
+11. 【推荐】系统设计阶段，根据依赖倒置原则，尽量依赖抽象类与接口，有利于扩展与维护。
 
-说明：极端情况下，交付的代码是不可修改的，同一业务域内的需求变化，通过模块或类的扩展来实现。
+  说明：低层次模块依赖于高层次模块的抽象，方便系统间的解耦。
 
-13.【推荐】系统设计阶段，共性业务或公共行为抽取出来公共模块、公共配置、公共类、公共方法等，在系统中不出现重复代码的情况，即 DRY 原则（Don't Repeat Yourself）。
-说明：随着代码的重复次数不断增加，维护成本指数级上升。随意复制和粘贴代码，必然会导致代码的重复，在维护代码时，需要修改所有的副本，容易遗漏。必要时抽取共性方法，或者抽象公共类，甚至是组件化。
+12. 【推荐】系统设计阶段，注意对扩展开放，对修改闭合。
 
-正例：一个类中有多个 public 方法，都需要进行数行相同的参数校验操作，这个时候请抽取：
-private boolean checkParam(DTO dto) {...}
+  说明：极端情况下，交付的代码是不可修改的，同一业务域内的需求变化，通过模块或类的扩展来实现。
 
-14.【推荐】避免如下误解：敏捷开发 = 讲故事 + 编码 + 发布。
-说明：敏捷开发是快速交付迭代可用的系统，省略多余的设计方案，摒弃传统的审批流程，但核心关键点上的必要设计和文档沉淀是需要的。
+13. 【推荐】系统设计阶段，共性业务或公共行为抽取出来公共模块、公共配置、公共类、公共方法等，在系统中不出现重复代码的情况，即 DRY 原则（Don't Repeat Yourself）。
 
-反例：某团队为了业务快速发展，敏捷成了产品经理催进度的借口，系统中均是勉强能运行但像面条一样的代码，可维护性和可扩展性极差，一年之后，不得不进行大规模重构，得不偿失。
+  说明：随着代码的重复次数不断增加，维护成本指数级上升。随意复制和粘贴代码，必然会导致代码的重复，在维护代码时，需要修改所有的副本，容易遗漏。必要时抽取共性方法，或者抽象公共类，甚至是组件化。
 
-15.【参考】设计文档的作用是明确需求、理顺逻辑、后期维护，次要目的用于指导编码。
-说明：避免为了设计而设计，系统设计文档有助于后期的系统维护和重构，所以设计结果需要进行分类归档保存。
+  正例：一个类中有多个 public 方法，都需要进行数行相同的参数校验操作，这个时候请抽取：private boolean checkParam(DTO dto) {...}
 
-16.【参考】可扩展性的本质是找到系统的变化点，并隔离变化点。
+14. 【推荐】避免如下误解：敏捷开发 = 讲故事 + 编码 + 发布。
 
-说明：世间众多设计模式其实就是一种设计模式即隔离变化点的模式。
+  说明：敏捷开发是快速交付迭代可用的系统，省略多余的设计方案，摒弃传统的审批流程，但核心关键点上的必要设计和文档沉淀是需要的。
 
-正例：极致扩展性的标志，就是需求的新增，不会在原有代码交付物上进行任何形式的修改。
+  反例：某团队为了业务快速发展，敏捷成了产品经理催进度的借口，系统中均是勉强能运行但像面条一样的代码，可维护性和可扩展性极差，一年之后，不得不进行大规模重构，得不偿失。
 
-17.【参考】设计的本质就是识别和表达系统难点。
+15. 【参考】设计文档的作用是明确需求、理顺逻辑、后期维护，次要目的用于指导编码。
 
-说明：识别和表达完全是两回事，很多人错误地认为识别到系统难点在哪里，表达只是自然而然的事情，但是大家在设计评审中经常出现语焉不详，甚至是词不达意的情况。准确地表达系统难点需要具备如下能力： 表达规则和表达工具的熟练性。抽象思维和总结能力的局限性。基础知识体系的完备性。深入浅出的 AQS/OOP/GAV/Query/BO/DTO生动表达力。
+  说明：避免为了设计而设计，系统设计文档有助于后期的系统维护和重构，所以设计结果需要进行分类归档保存。
 
-18.【参考】代码即文档的观点是错误的，清晰的代码只是文档的某个片断，而不是全部。
+16. 【参考】可扩展性的本质是找到系统的变化点，并隔离变化点。
 
-说明：代码的深度调用，模块层面上的依赖关系网，业务场景逻辑，非功能性需求等问题是需要相应的文档来完整地呈现的。
+  说明：世间众多设计模式其实就是一种设计模式即隔离变化点的模式。
 
-19.【参考】在做无障碍产品设计时，需要考虑到：
+  正例：极致扩展性的标志，就是需求的新增，不会在原有代码交付物上进行任何形式的修改。
+
+17. 【参考】设计的本质就是识别和表达系统难点。
+
+  说明：识别和表达完全是两回事，很多人错误地认为识别到系统难点在哪里，表达只是自然而然的事情，但是大家在设计评审中经常出现语焉不详，甚至是词不达意的情况。准确地表达系统难点需要具备如下能力： 表达规则和表达工具的熟练性。抽象思维和总结能力的局限性。基础知识体系的完备性。深入浅出的 AQS/OOP/GAV/Query/BO/DTO生动表达力。
+
+18. 【参考】代码即文档的观点是错误的，清晰的代码只是文档的某个片断，而不是全部。
+
+  说明：代码的深度调用，模块层面上的依赖关系网，业务场景逻辑，非功能性需求等问题是需要相应的文档来完整地呈现的。
+
+19. 【参考】在做无障碍产品设计时，需要考虑到：
 
 * 所有可交互的控件元素必须能被 tab 键聚焦，并且焦点顺序需符合自然操作逻辑。
 * 用于登录校验和请求拦截的验证码均需提供图形验证以外的其它方式。
 * 自定义的控件类型需明确交互方式。
 
-正例：用户登录场景中，输入框的按钮都需要考虑 tab 键聚焦，符合自然逻辑的操作顺序如下，“输入用户名，输入密码，输入验证码，点击登录”，其中验证码实现语音验证方式。如果有自定义标签实现的控件设置控件类型可使用 role 属性。
+  正例：用户登录场景中，输入框的按钮都需要考虑 tab 键聚焦，符合自然逻辑的操作顺序如下，“输入用户名，输入密码，输入验证码，点击登录”，其中验证码实现语音验证方式。如果有自定义标签实现的控件设置控件类型可使用 role 属性。
 
 # 附 1：专有名词解释
 
@@ -2134,8 +2232,7 @@ private boolean checkParam(DTO dto) {...}
 2. DO（Data Object）：阿里巴巴专指数据库表一一对应的 POJO 类。此对象与数据库表结构一一对应，通过 DAO 层向上传输数据源对象。
 3. （Data Transfer Object）：数据传输对象，Service 或 Manager 向外传输的对象。
 4. （Business Object）：业务对象，可以由 Service 层输出的封装业务逻辑的对象。
-5. ：数据查询对象，各层接收上层的查询请求。注意超过 2 个参数的查询封装，禁止使用
-Map 类来传输。
+5. 数据查询对象，各层接收上层的查询请求。注意超过 2 个参数的查询封装，禁止使用Map 类来传输。
 6. VO（View Object）：显示层对象，通常是 Web 向模板渲染引擎层传输的对象。
 7. AO（Application Object）: 阿里巴巴专指Application Object，即在 Service 层上，极为贴近业务的复用代码。
 8. CAS（Compare And Swap）：解决多线程并行情况下使用锁造成性能损耗的一种机制，这是硬件实现的原子操作。CAS 操作包含三个操作数：内存位置、预期原值和新值。如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置值更新为新值。否则，处理器不做任何操作。

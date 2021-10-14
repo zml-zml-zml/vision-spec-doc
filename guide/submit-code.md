@@ -2,8 +2,8 @@
  * @Descripttion:  代码提交规范
  * @Author: zmlxsg
  * @Date: 2021-08-23 10:39:34
- * @LastEditors: zmlxsg
- * @LastEditTime: 2021-08-30 10:00:19
+ * @LastEditors: zml
+ * @LastEditTime: 2021-10-14 12:00:22
 -->
 
 # 代码提交规范
@@ -50,11 +50,13 @@ Tag 由公司配置管理进行管理，在研发人员提出发布申请后，�
 
 * 为了保证使用 git 的日志提交一致，现规定格式规范如下：
 
+```
       <type>[<scope>]: <subject> //本行内容 git 在 push 到中央仓库时会被校验
       //空行
       <body>
       //空行
       <footer>
+```
 
 注意：type 后若使用英文冒号，请多加一个空格。
 
@@ -64,6 +66,7 @@ type
 
 用于说明 commit 的类别，只允许使用下面 7 个标识，必传。
 
+```
     feat：新功能（feature）
     fix：修补 bug
     docs：文档（documentation）
@@ -71,6 +74,7 @@ type
     refactor：重构（即不是新增功能，也不是修改 bug 的代码变动）
     test：增加测试
     chore：构建过程或辅助工具的变动
+```
 
 scope
 
@@ -115,6 +119,7 @@ footer
 * 项目中安装插件 `npm i -D @commitlint/cli`
 * 在项目更目录下建立配置文件 commitlint.config.js 或者 .commitlintrc.js
 
+```
       module.exports = {
       extends: ["cz"],
       rules: {
@@ -123,20 +128,25 @@ footer
       "subject-empty": [2, "never"],
       },
       };
+```
 
 * 结合 git hook 来检验 commit message,这样当你的提交不符合规范时就会阻止你提交 `npm i -D husky`
 
   package.json 中加入下面内容:
 
+```
   "husky": {
   "hooks": {
   "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   } }
+```
 
 * 项目中安装插件 npm i -D commitlint-config-cz cz-customizable， 并且在项目根目录创
 建 .cz-config.js 文件，文件内容如下：
 
+```
       module.exports = {
+
       types: [ {value: '✨特性', name: '特性: 一个新的特性'},
       {value: '🐛修复', name: '修复: 修复一个 Bug'},
       {value: '📝文档', name: '文档: 变更的只有文档'},
@@ -147,12 +157,15 @@ footer
       {value: '🔧工具', name: '工具: 开发工具变动(构建、脚手架工具等)'},
       { value: ''回滚', name: '回滚: 代码回退' }
       ],
+
       scopes: [ {name: '模块 1'},
       {name: '模块 2'},
       {name: '模块 3'},
       {name: '模块 4'}
       ],
+
       // it needs to match the value for field type. Eg.: 'fix'
+
       /* scopeOverrides: {
       fix: [
       {name: 'merge'},
@@ -161,7 +174,9 @@ footer
       {name: 'unitTest'}
       ]
       }, */
+
       // override the messages, defaults are as follows
+
       messages: {
       type: '选择一种你的提交类型:',
       scope: '选择一个 scope (可选):',
@@ -178,9 +193,11 @@ footer
       // limit subject length
       subjectLimit: 100
       };
+```
 
 package.json 中加入以下两段内容 :
 
+```
     "config": {
     "commitizen": {
     "path": "cz-customizable"
@@ -188,3 +205,4 @@ package.json 中加入以下两段内容 :
     "scripts": {
     "commit": "git cz"
     }
+```

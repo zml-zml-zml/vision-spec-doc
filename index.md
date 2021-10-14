@@ -26,5 +26,7 @@ footer: MIT Licensed | Copyright © 2021-present 深圳市信成医疗科技有�
   .features .title {
     background: linear-gradient(91deg,#f1eefc,#9dc6ff 70%,#a5bcff);
     border-radius: 0 15px  0 15px;
+    margin-bottom:10px;
   }
+
 </style>
